@@ -1,0 +1,71 @@
+package com.example.session3.adapters;
+
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.session3.R;
+import com.example.session3.activities.PriceActivity;
+import com.example.session3.models.Property;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHolder> {
+    private List<Property> properties = new ArrayList<>();
+    public PropertyAdapter(List<Property> properties){
+        this.properties = properties;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_properties,parent,false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        Property property = properties.get(position);
+        holder.tvPropertyName.setText(property.title);
+        holder.tvPropertyData.setText("Last date of pricing:" + property.date);
+        holder.tvPropertyName.setTag(property.id.toString());
+        holder.cvPropertySet.setOnClickListener(v->{
+            //set
+            Intent intent = new Intent(holder.itemView.getContext(), PriceActivity.class);
+            intent.putExtra("data_id",holder.tvPropertyName.getTag().toString());
+            holder.itemView.getContext().startActivity(intent);
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return properties.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        private CardView cvPropertySet;
+        private TextView tvPropertyName, tvPropertyData;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            cvPropertySet = itemView.findViewById(R.id.cv_property_set);
+            tvPropertyName = itemView.findViewById(R.id.tv_property_name);
+            tvPropertyData = itemView.findViewById(R.id.tv_property_data);
+        }
+    }
+
+}
