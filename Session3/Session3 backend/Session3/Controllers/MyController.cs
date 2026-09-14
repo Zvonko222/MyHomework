@@ -40,7 +40,7 @@ namespace Session3.Controllers
 
         [Route("property")]
         [HttpGet]
-        public IHttpActionResult getPerproty()
+        public ApiResult<Property> getPerproty()
         {
             string sql = "" +
                 "select Date,Title,ip.ID " +
@@ -57,7 +57,14 @@ namespace Session3.Controllers
                 property.id = row["ID"].ToString();
                 properties.Add(property);
             }
-            return Ok(properties);
+
+            return new ApiResult<Property>
+            {
+                success = true,
+                msg = "Query success",
+                dataList = properties,
+                code = 200
+            };
         }
 
         [Route("login")]

@@ -40,8 +40,8 @@ namespace Session2.Forms
             string fullName = tb_fullname.Text;
             string pwd = tb_password.Text;
             string pwdAgain = tb_password_again.Text;
-            string birthday = tb_birthday.Text;
             string gender = "";
+            string birthday = dateTimePicker1.Value.ToString();
             int numberOfFamliyMembers = Convert.ToInt32(nud_number_of_family_members.Value);
 
 
@@ -50,10 +50,9 @@ namespace Session2.Forms
             textBoxes.Add(tb_username);
             textBoxes.Add(tb_fullname);
             textBoxes.Add(tb_password);
-            textBoxes.Add(tb_birthday);
             foreach(TextBox textbox in textBoxes)
             {
-                if (string.IsNullOrWhiteSpace(textbox.Text))
+                if (string.IsNullOrWhiteSpace(textbox.Text.ToString()))
                 {
                     MessageBox.Show($"{textbox.Name} cannot is a null");
                     textbox.Focus();
@@ -103,8 +102,8 @@ namespace Session2.Forms
 
             // Insert
             sql = $"" +
-                $"insert into Users ('Username','FullName','Password','BirthDate','Gender','FamilyCount') " +
-                $"values ('{username}','{fullName}','{pwd}','{birthday}','{gender}','{nud_number_of_family_members}') ";
+                $"insert into Users ([Username],[FullName],[Password],[BirthDate],[Gender],[FamilyCount],[UserTypeID]) " +
+                $"values ('{username}','{fullName}','{pwd}','{birthday}','{gender}','{numberOfFamliyMembers}','1') ";
             bool result = DBHelper.executeNonQuery(sql);
             if (result)
             {
@@ -125,5 +124,7 @@ namespace Session2.Forms
         {
             Application.Exit();
         }
+
+
     }
 }

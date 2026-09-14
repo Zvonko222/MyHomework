@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nud_number_of_family_members = new System.Windows.Forms.NumericUpDown();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.cb_agree = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.rb_male = new System.Windows.Forms.RadioButton();
             this.tb_password_again = new System.Windows.Forms.TextBox();
             this.tb_password = new System.Windows.Forms.TextBox();
-            this.tb_birthday = new System.Windows.Forms.TextBox();
             this.tb_fullname = new System.Windows.Forms.TextBox();
             this.tb_username = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,13 +47,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.nud_number_of_family_members = new System.Windows.Forms.NumericUpDown();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_family_members)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.nud_number_of_family_members);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.cb_agree);
@@ -63,7 +64,6 @@
             this.panel1.Controls.Add(this.rb_male);
             this.panel1.Controls.Add(this.tb_password_again);
             this.panel1.Controls.Add(this.tb_password);
-            this.panel1.Controls.Add(this.tb_birthday);
             this.panel1.Controls.Add(this.tb_fullname);
             this.panel1.Controls.Add(this.tb_username);
             this.panel1.Controls.Add(this.label5);
@@ -75,6 +75,13 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(699, 313);
             this.panel1.TabIndex = 0;
+            // 
+            // nud_number_of_family_members
+            // 
+            this.nud_number_of_family_members.Location = new System.Drawing.Point(577, 124);
+            this.nud_number_of_family_members.Name = "nud_number_of_family_members";
+            this.nud_number_of_family_members.Size = new System.Drawing.Size(64, 25);
+            this.nud_number_of_family_members.TabIndex = 8;
             // 
             // linkLabel1
             // 
@@ -149,13 +156,6 @@
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(182, 25);
             this.tb_password.TabIndex = 1;
-            // 
-            // tb_birthday
-            // 
-            this.tb_birthday.Location = new System.Drawing.Point(176, 140);
-            this.tb_birthday.Name = "tb_birthday";
-            this.tb_birthday.Size = new System.Drawing.Size(182, 25);
-            this.tb_birthday.TabIndex = 1;
             // 
             // tb_fullname
             // 
@@ -240,12 +240,12 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // nud_number_of_family_members
+            // dateTimePicker1
             // 
-            this.nud_number_of_family_members.Location = new System.Drawing.Point(577, 124);
-            this.nud_number_of_family_members.Name = "nud_number_of_family_members";
-            this.nud_number_of_family_members.Size = new System.Drawing.Size(64, 25);
-            this.nud_number_of_family_members.TabIndex = 8;
+            this.dateTimePicker1.Location = new System.Drawing.Point(176, 144);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(209, 25);
+            this.dateTimePicker1.TabIndex = 2;
             // 
             // CreateForm
             // 
@@ -272,7 +272,6 @@
         private System.Windows.Forms.RadioButton rb_female;
         private System.Windows.Forms.RadioButton rb_male;
         private System.Windows.Forms.TextBox tb_password;
-        private System.Windows.Forms.TextBox tb_birthday;
         private System.Windows.Forms.TextBox tb_fullname;
         private System.Windows.Forms.TextBox tb_username;
         private System.Windows.Forms.Label label5;
@@ -288,5 +287,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NumericUpDown nud_number_of_family_members;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

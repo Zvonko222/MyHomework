@@ -29,13 +29,13 @@ namespace Session2
         private void button1_Click_1(object sender, EventArgs e)
         {
             string employee = tb_employee.Text;
-            string user = tb_user.Text;
+            string username = tb_user.Text;
             string pwd = tb_password.Text;
 
             string sql = $"" +
                 $"select Username,Password " +
                 $"from Users " +
-                $"where Username = '{user}' ";
+                $"where Username = '{username}' ";
             DataTable table = DBHelper.executeQuery(sql);
             if(table.Rows.Count == 0)
             {
@@ -46,9 +46,29 @@ namespace Session2
             if (table.Rows[0]["Password"].ToString() == pwd)
             {
                 MessageBox.Show("Login Successfully");
-
+                ManagementForm managementForm = new ManagementForm();
+                managementForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Password is incorrect");
+                return;
             }
 
+            // Login Again Verification
+            if (cb_keep_sign.Checked)
+            {
+                Properties.Settings.Default.password = tb_password.Text;
+                Properties.Settings.Default.username = tb_user.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.username = "";
+                Properties.Settings.Default.password = "";
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -67,6 +87,28 @@ namespace Session2
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void WelcomeForm_Load(object sender, EventArgs e)
+        {
+            tb_password.UseSystemPasswordChar = true;
+            if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.username))
+            {
+                tb_user.Text = Properties.Settings.Default.username;
+                tb_password.Text = Properties.Settings.Default.password;
+                cb_keep_sign.Checked = true;
+            }
+            
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_password.UseSystemPasswordChar = !cb_show_password.Checked;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

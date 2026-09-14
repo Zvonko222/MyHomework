@@ -53,15 +53,22 @@ public class ListingActivity extends AppCompatActivity {
 
         new Thread(() -> {
             String result = ApiRequest.get("property");
+
             try {
-                JSONArray ja = new JSONArray(result);
-                for (int i = 0; i < ja.length(); i++) {
-                    JSONObject jo = ja.getJSONObject(i);
-                    Property property = new Property();
-                    property.title = jo.getString("title");
-                    property.date = jo.getString("date");
-                    property.id = jo.getString("id");
-                    properties.add(property);
+                JSONObject _jo = new JSONObject(result);
+                boolean isSuccess = _jo.getBoolean("success");
+                if(isSuccess){
+                    Log.d("HTTP", "dataList = " + _jo.getString("dataList"));
+                    JSONArray ja = _jo.getJSONArray("dataList");
+                    
+                    for (int i = 0; i < ja.length(); i++) {
+                        JSONObject jo = ja.getJSONObject(i);
+                        Property property = new Property();
+                        property.title = jo.getString("title");
+                        property.date = jo.getString("date");
+                        property.id = jo.getString("id");
+                        properties.add(property);
+                    }
                 }
             } catch (Exception e) {
                 Log.e("TAG", "JSON ERROR ", e);

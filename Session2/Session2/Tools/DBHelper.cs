@@ -37,7 +37,7 @@ namespace Session2.Tools
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
         }

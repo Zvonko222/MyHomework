@@ -37,8 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cb_keep_sign = new System.Windows.Forms.CheckBox();
+            this.cb_show_password = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -130,27 +130,29 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Login";
             // 
-            // checkBox1
+            // cb_keep_sign
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("SimSun", 12F);
-            this.checkBox1.Location = new System.Drawing.Point(645, 223);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(201, 24);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Keep me signed in";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cb_keep_sign.AutoSize = true;
+            this.cb_keep_sign.Font = new System.Drawing.Font("SimSun", 12F);
+            this.cb_keep_sign.Location = new System.Drawing.Point(645, 223);
+            this.cb_keep_sign.Name = "cb_keep_sign";
+            this.cb_keep_sign.Size = new System.Drawing.Size(201, 24);
+            this.cb_keep_sign.TabIndex = 2;
+            this.cb_keep_sign.Text = "Keep me signed in";
+            this.cb_keep_sign.UseVisualStyleBackColor = true;
+            this.cb_keep_sign.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // checkBox2
+            // cb_show_password
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("SimSun", 12F);
-            this.checkBox2.Location = new System.Drawing.Point(645, 262);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(161, 24);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "Show password";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cb_show_password.AutoSize = true;
+            this.cb_show_password.Font = new System.Drawing.Font("SimSun", 12F);
+            this.cb_show_password.Location = new System.Drawing.Point(645, 262);
+            this.cb_show_password.Name = "cb_show_password";
+            this.cb_show_password.Size = new System.Drawing.Size(161, 24);
+            this.cb_show_password.TabIndex = 2;
+            this.cb_show_password.Text = "Show password";
+            this.cb_show_password.UseVisualStyleBackColor = true;
+            this.cb_show_password.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // button1
             // 
@@ -201,13 +203,14 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.cb_show_password);
+            this.Controls.Add(this.cb_keep_sign);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Name = "WelcomeForm";
             this.Text = "Seoul Stay - welcome";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WelcomeForm_FormClosed);
+            this.Load += new System.EventHandler(this.WelcomeForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -226,8 +229,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cb_keep_sign;
+        private System.Windows.Forms.CheckBox cb_show_password;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label6;
