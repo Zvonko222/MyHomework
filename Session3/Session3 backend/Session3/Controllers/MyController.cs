@@ -15,7 +15,7 @@ namespace Session3.Controllers
     {
         [Route("property/{itemPricesId}")]
         [HttpGet]
-        public IHttpActionResult getPropertyData(int itemPricesId)
+        public ApiResult<List<Book>> getPropertyData(int itemPricesId)
         {
             string sql = $"" +
                 $"select b.BookingDate,b.AmountPaid " +
@@ -28,6 +28,17 @@ namespace Session3.Controllers
             DataTable table = DBHelper.executeQuery(sql);
             List<Book> books = new List<Book>();
             
+            if(table.Rows.Count <= 0)
+            {
+                return new ApiResult<List<Book>>
+                {
+                    success = false,
+                    msg = "book count is null",
+                    data = null,
+                    code = 500
+                };
+            }
+
             foreach(DataRow row in table.Rows)
             {
                 Book book = new Book();
@@ -35,18 +46,25 @@ namespace Session3.Controllers
                 book.paid = row["AmountPaid"].ToString();
                 books.Add(book);
             }
-            return Ok(books);
+            return new ApiResult<List<Book>>
+            {
+                success = true,
+                msg = "Query Success",
+                data = books,
+                code = 200,
+            };
         }
 
         [Route("property")]
         [HttpGet]
-        public ApiResult<Property> getPerproty()
+        public ApiResult<List<Property>> getPerproty()
         {
             string sql = "" +
                 "select Date,Title,ip.ID " +
                 "from Items i " +
                 "join ItemPrices ip " +
                 "on i.ItemTypeID=ip.ID ";
+
             DataTable table = DBHelper.executeQuery(sql);
             List<Property> properties = new List<Property>();
             foreach(DataRow row in table.Rows)
@@ -58,18 +76,18 @@ namespace Session3.Controllers
                 properties.Add(property);
             }
 
-            return new ApiResult<Property>
+            return new ApiResult<List<Property>>
             {
                 success = true,
                 msg = "Query success",
-                dataList = properties,
+                data = properties,
                 code = 200
             };
         }
 
         [Route("login")]
         [HttpPost]
-        public IHttpActionResult login(Users user)
+        public ApiResult<object> login(Users user)
         {
             string sql = $"" +
                 $"select * " +
@@ -79,29 +97,34 @@ namespace Session3.Controllers
             DataTable table = DBHelper.executeQuery(sql);
             if(table.Rows.Count == 0)
             {
-                return Ok(new
+                return new ApiResult<object>
                 {
                     success = false,
-                    message = "username or password error"
-                });
+                    msg = "this username doesnt exsit",
+                    data = null,
+                    code = 500
+                };
             }
             DataRow row = table.Rows[0];
             if (user.password == row["password"].ToString())
             {
-                return Ok(new
+                string id = row["ID"].ToString();
+                return new ApiResult<object>
                 {
                     success = true,
-                    message = "login success",
-                    uid = row["ID"].ToString()
-                });
+                    msg = "Login Success",
+                    data = id,
+                    code = 200,
+                };
             }
             else
             {
-                return Ok(new
-                {
+                return new ApiResult<object> {
                     success = false,
-                    message = "username or password error"
-                });
+                    msg = "password is mistake",
+                    data = null,
+                    code = 500
+                };
             }
 
         }

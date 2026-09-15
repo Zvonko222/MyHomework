@@ -51,6 +51,7 @@ public class PriceActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview_price);
         tvCalendar1 = findViewById(R.id.tv_price_calendar_1);
         tvCalendar2 = findViewById(R.id.tv_price_calendar_2);
+
         List<Price> prices = new ArrayList<>();
 
         PriceAdapter adapter = new PriceAdapter(prices);
@@ -62,7 +63,6 @@ public class PriceActivity extends AppCompatActivity {
         imgCalendar2 = findViewById(R.id.img_price_calendar_2);
 
         String data_id = getIntent().getStringExtra("data_id");
-//        Log.d("TAG", "data id = " +data_id);
 
         imgCalendar1.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
@@ -100,22 +100,29 @@ public class PriceActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 Log.d("HTTP", "result = " + result);
+
                 try {
-                    JSONArray ja = new JSONArray(result);
-                    for (int i = 0; i < ja.length(); i++) {
-                        JSONObject jo = ja.getJSONObject(i);
-                        Price price = new Price();
-                        price.setPaid(jo.getString("paid"));
-                        price.setDate(jo.getString("date"));
-//                        Log.d("TAG", "date = " + price.getDate());
-//                        Log.d("TAG", "title = " + price.getPaid());
-                        prices.add(price);
+                    JSONObject _jo = new JSONObject(result);
+                    boolean isSuccess = _jo.getBoolean("success");
+
+                    if(isSuccess){
+
+                        JSONArray ja = _jo.getJSONArray("data");
+
+                        for (int i = 0; i < ja.length(); i++) {
+                            JSONObject jo = ja.getJSONObject(i);
+
+                            Price price = new Price();
+                            price.setPaid(jo.getString("paid"));
+                            price.setDate(jo.getString("date"));
+
+                            prices.add(price);
+                        }
+                        adapter.notifyDataSetChanged();
                     }
-                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     Log.e("TAG", "JSON ERROR", e);
                 }
-//                Log.d("HTTP", "result = " + result);
             });
         }).start();
 

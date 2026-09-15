@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
 
-
         btnLogin.setOnClickListener(v -> {
             JSONObject jo = new JSONObject();
             try {
@@ -53,35 +52,24 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         JSONObject _jo = new JSONObject(result);
                         boolean isSuccess = _jo.getBoolean("success");
-                        if(!isSuccess){
-                            String msg = _jo.getString("message");
-                            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-                        }
-                        if(isSuccess){
-                            Intent intent = new Intent(MainActivity.this, ListingActivity.class);
-                            startActivity(intent);
-                        }
+                        String msg = _jo.getString("msg");
+                        runOnUiThread(()->{
+                            if(!isSuccess){
+                                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                            }
+                            if(isSuccess){
+                                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, ListingActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                     } catch (JSONException e) {
                         Log.e("TAG", "JSON ERROR", e);
                     }
                 }).start();
-
             } catch (Exception e) {
                 Log.e("HTTP", "GET ERROR ", e);
-
             }
         });
-
-
-//        btnLogin.setOnClickListener(v->{
-//            new Thread(()->{
-//                String result = ApiRequest.get("test");
-//                runOnUiThread(()->{
-//
-//                    Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
-//                });
-//
-//            }).start();
-//        });
     }
 }

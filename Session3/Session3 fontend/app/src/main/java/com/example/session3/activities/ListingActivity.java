@@ -58,8 +58,8 @@ public class ListingActivity extends AppCompatActivity {
                 JSONObject _jo = new JSONObject(result);
                 boolean isSuccess = _jo.getBoolean("success");
                 if(isSuccess){
-                    Log.d("HTTP", "dataList = " + _jo.getString("dataList"));
-                    JSONArray ja = _jo.getJSONArray("dataList");
+                    Log.d("HTTP", "dataList = " + _jo.getString("data"));
+                    JSONArray ja = _jo.getJSONArray("data");
                     
                     for (int i = 0; i < ja.length(); i++) {
                         JSONObject jo = ja.getJSONObject(i);
@@ -69,6 +69,7 @@ public class ListingActivity extends AppCompatActivity {
                         property.id = jo.getString("id");
                         properties.add(property);
                     }
+                    adapter.notifyDataSetChanged();
                 }
             } catch (Exception e) {
                 Log.e("TAG", "JSON ERROR ", e);

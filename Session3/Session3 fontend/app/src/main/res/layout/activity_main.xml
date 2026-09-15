@@ -28,6 +28,7 @@
         android:id="@+id/cardView"
         android:layout_width="300dp"
         android:layout_height="60dp"
+        app:cardCornerRadius="20dp"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="400dp"
         android:layout_height="200dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"

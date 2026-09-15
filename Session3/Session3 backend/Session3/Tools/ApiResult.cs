@@ -9,7 +9,7 @@ namespace Session3.Tools
     {
         public bool success { get; set; }
         public string msg { get; set; }
-        public List<T> dataList { get; set; }
+        public T data { get; set; }
         public int code { get; set; }
         
     }
