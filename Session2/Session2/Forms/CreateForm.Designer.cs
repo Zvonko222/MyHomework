@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.nud_number_of_family_members = new System.Windows.Forms.NumericUpDown();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.cb_agree = new System.Windows.Forms.CheckBox();
@@ -47,7 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_family_members)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +76,13 @@
             this.panel1.Size = new System.Drawing.Size(699, 313);
             this.panel1.TabIndex = 0;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(176, 144);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(209, 25);
+            this.dateTimePicker1.TabIndex = 2;
+            // 
             // nud_number_of_family_members
             // 
             this.nud_number_of_family_members.Location = new System.Drawing.Point(577, 124);
@@ -92,6 +99,7 @@
             this.linkLabel1.TabIndex = 7;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "View Terms and Conditions";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // cb_agree
             // 
@@ -239,13 +247,6 @@
             this.button2.Text = "Return login form";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(176, 144);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(209, 25);
-            this.dateTimePicker1.TabIndex = 2;
             // 
             // CreateForm
             // 

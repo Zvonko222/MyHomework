@@ -13,6 +13,7 @@ namespace Session2.Forms
 {
     public partial class CreateForm : Form
     {
+        private bool clickFlag = false;
         public CreateForm()
         {
             InitializeComponent();
@@ -59,7 +60,16 @@ namespace Session2.Forms
                     return;
                 }
             }
-
+            if (!clickFlag)
+            {
+                MessageBox.Show("Please onClick View Terms and Condition");
+                return;
+            }
+            if(tb_password.TextLength < 5)
+            {
+                MessageBox.Show("Password is to short");
+                return;
+            }
             if (pwd != pwdAgain)
             {
                 MessageBox.Show("passwords do not match");
@@ -125,6 +135,9 @@ namespace Session2.Forms
             Application.Exit();
         }
 
-
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            clickFlag = true;
+        }
     }
 }

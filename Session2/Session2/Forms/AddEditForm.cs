@@ -15,11 +15,14 @@ namespace Session2.Forms
     public partial class AddEditForm : Form
     {
         AddListDataModel addListDataModel = new AddListDataModel();
+        private string v;
+
         public AddEditForm(AddListDataModel list)
         {
             InitializeComponent();
             this.addListDataModel = list;
-
+            
+            this.Text = "Seoul Stay - Edit Listing "+ list.title;
             tb_title.Text = addListDataModel.title;
             //....
 
@@ -28,6 +31,18 @@ namespace Session2.Forms
         public AddEditForm()
         {
             InitializeComponent();
+        }
+
+        public AddEditForm(string v)
+        {
+            InitializeComponent();
+
+            this.v = v;
+            MessageBox.Show(v);
+            if (v == "AddForm")
+            {
+                this.Text = "Seoul Stay - Add Listing";
+            }
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -89,6 +104,13 @@ namespace Session2.Forms
         private void cb_type_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void btn_close_finish_Click(object sender, EventArgs e)
+        {
+            //save and close
+            //....
+
         }
     }
 }

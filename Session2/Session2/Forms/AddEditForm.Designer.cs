@@ -425,6 +425,7 @@
             this.btn_close_finish.TabIndex = 4;
             this.btn_close_finish.Text = "Close / Finish";
             this.btn_close_finish.UseVisualStyleBackColor = true;
+            this.btn_close_finish.Click += new System.EventHandler(this.btn_close_finish_Click);
             // 
             // btn_next
             // 

@@ -54,6 +54,8 @@ namespace Session2.Forms
             dataGridView1.DataSource = table;
             dataGridView2.DataSource = table;
 
+            l_item_found.Text = table.Rows.Count + " items found.";
+
             if (!dataGridView2.Columns.Contains("btnEdit"))
             {
                 DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn();
@@ -94,7 +96,7 @@ namespace Session2.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AddEditForm addEditForm = new AddEditForm();
+            AddEditForm addEditForm = new AddEditForm("AddForm");
             addEditForm.Show();
             this.Hide();
         }
