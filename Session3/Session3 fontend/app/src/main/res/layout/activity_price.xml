@@ -92,16 +92,17 @@
                         android:layout_height="wrap_content"
                         android:text="On the weekend:"
                         android:layout_marginRight="50dp"/>
-                    <TextView
+
+                    <NumberPicker
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <Spinner
+                        android:layout_marginLeft="50dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:text="0.0"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select the rule"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -113,16 +114,15 @@
                         android:layout_height="wrap_content"
                         android:text="On the holidays:"
                         android:layout_marginRight="50dp"/>
-                    <TextView
+                    <NumberPicker
+                        android:layout_marginLeft="17dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <Spinner
+                        android:layout_marginLeft="50dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:text="0.0"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select the rule"
-                        android:layout_marginLeft="20dp"/>
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,16 +134,15 @@
                         android:layout_height="wrap_content"
                         android:text="On the days:"
                         android:layout_marginRight="50dp"/>
-                    <TextView
+                    <NumberPicker
+                        android:layout_marginLeft="40dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <Spinner
+                        android:layout_marginLeft="50dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:text="0.0"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select the rule"
-                        android:layout_marginLeft="20dp"/>
+                        />
                 </LinearLayout>
                 <Button
                     android:layout_width="200dp"

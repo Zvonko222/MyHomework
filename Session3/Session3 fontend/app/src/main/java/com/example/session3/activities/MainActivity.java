@@ -51,15 +51,17 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                         JSONObject _jo = new JSONObject(result);
-                        boolean isSuccess = _jo.getBoolean("success");
+                        int code = _jo.getInt("code");
                         String msg = _jo.getString("msg");
-                        runOnUiThread(()->{
-                            if(!isSuccess){
+                        int id = _jo.getInt("data");
+
+                        runOnUiThread(() -> {
+                            if (code != 200) {
                                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-                            }
-                            if(isSuccess){
+                            } else {
                                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, ListingActivity.class);
+                                intent.putExtra("data",id);
                                 startActivity(intent);
                             }
                         });

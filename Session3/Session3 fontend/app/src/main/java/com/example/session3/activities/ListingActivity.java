@@ -50,15 +50,21 @@ public class ListingActivity extends AppCompatActivity {
             finishAffinity();
         });
 
+        int userId = getIntent().getIntExtra("data",0);
+
 
         new Thread(() -> {
-            String result = ApiRequest.get("property");
+
 
             try {
+                Log.d("HTTP", "userId =  "+userId);
+
+                String result = ApiRequest.post("property?userId="+userId,"");
+                Log.d("HTTP", "result =  "+result);
                 JSONObject _jo = new JSONObject(result);
-                boolean isSuccess = _jo.getBoolean("success");
-                if(isSuccess){
-                    Log.d("HTTP", "dataList = " + _jo.getString("data"));
+
+                int code = _jo.getInt("code");
+                if(code == 200){
                     JSONArray ja = _jo.getJSONArray("data");
                     
                     for (int i = 0; i < ja.length(); i++) {
@@ -67,6 +73,10 @@ public class ListingActivity extends AppCompatActivity {
                         property.title = jo.getString("title");
                         property.date = jo.getString("date");
                         property.id = jo.getString("id");
+                        property.minimumNights = jo.getInt("minimumNights");
+                        property.maximumNights = jo.getInt("maximumNights");
+                        property.isInnerFiveDay = jo.getBoolean("isInnerFiveDay");
+                        property.userId = jo.getInt("userId");
                         properties.add(property);
                     }
                     adapter.notifyDataSetChanged();

@@ -9,6 +9,8 @@ namespace Session3.Models
     {
         public string title { get; set; }
         public string date { get; set; }
-        public string id { get; set; }
+        public int id { get; set; }
+        
+
     }
 }

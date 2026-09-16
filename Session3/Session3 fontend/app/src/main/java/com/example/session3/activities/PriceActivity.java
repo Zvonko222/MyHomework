@@ -62,7 +62,8 @@ public class PriceActivity extends AppCompatActivity {
         imgCalendar1 = findViewById(R.id.img_price_calendar_1);
         imgCalendar2 = findViewById(R.id.img_price_calendar_2);
 
-        String data_id = getIntent().getStringExtra("data_id");
+        int userId = getIntent().getIntExtra("userId",0);
+        int itemId = getIntent().getIntExtra("itemId",0);
 
         imgCalendar1.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
@@ -96,16 +97,23 @@ public class PriceActivity extends AppCompatActivity {
         });
 
         new Thread(() -> {
-            String result = ApiRequest.get("property/" + data_id);
+
 
             runOnUiThread(() -> {
-                Log.d("HTTP", "result = " + result);
 
                 try {
-                    JSONObject _jo = new JSONObject(result);
-                    boolean isSuccess = _jo.getBoolean("success");
+                    JSONObject _jo = new JSONObject();
+                    _jo.put("userId",userId );
+                    _jo.put("itemId",itemId);
 
-                    if(isSuccess){
+                    String result = ApiRequest.post("price",_jo.toString());
+
+
+                    Log.d("HTTP", "result = " + result);
+                    JSONObject _jo = new JSONObject(result);
+                    int code = _jo.getInt("code");
+
+                    if(code == 200){
 
                         JSONArray ja = _jo.getJSONArray("data");
 

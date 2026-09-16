@@ -2,6 +2,7 @@ package com.example.session3.adapters;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,17 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         Property property = properties.get(position);
         holder.tvPropertyName.setText(property.title);
         holder.tvPropertyData.setText("Last date of pricing:" + property.date);
-        holder.tvPropertyName.setTag(property.id.toString());
+
+        if(property.isInnerFiveDay){
+            holder.tvPropertyName.setTextColor(Color.parseColor("#F44336"));
+            holder.tvPropertyData.setTextColor(Color.parseColor("#F44336"));
+        }
+
         holder.cvPropertySet.setOnClickListener(v->{
             //set
             Intent intent = new Intent(holder.itemView.getContext(), PriceActivity.class);
-            intent.putExtra("data_id",holder.tvPropertyName.getTag().toString());
+            intent.putExtra("userId",property.userId);
+            intent.putExtra("itemId",property.id);
             holder.itemView.getContext().startActivity(intent);
         });
 
@@ -63,8 +70,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
             super(itemView);
 
             cvPropertySet = itemView.findViewById(R.id.cv_property_set);
-            tvPropertyName = itemView.findViewById(R.id.tv_property_name);
-            tvPropertyData = itemView.findViewById(R.id.tv_property_data);
+            tvPropertyName = itemView.findViewById(R.id.tv_item_property_name);
+            tvPropertyData = itemView.findViewById(R.id.tv_item_property_data);
         }
     }
 
