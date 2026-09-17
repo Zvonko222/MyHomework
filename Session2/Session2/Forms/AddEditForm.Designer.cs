@@ -33,14 +33,14 @@
             this.nud_number_of_bathrooms = new System.Windows.Forms.NumericUpDown();
             this.nud_number_of_bedrooms = new System.Windows.Forms.NumericUpDown();
             this.nud_number_of_beds = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nud_maximum = new System.Windows.Forms.NumericUpDown();
+            this.nud_minimum = new System.Windows.Forms.NumericUpDown();
             this.nud_capacity = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_host_rules = new System.Windows.Forms.TextBox();
+            this.tb_desciption = new System.Windows.Forms.TextBox();
+            this.tb_exact_address = new System.Windows.Forms.TextBox();
+            this.tb_approxinmate_address = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tb_title = new System.Windows.Forms.TextBox();
@@ -70,8 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_bathrooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_bedrooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_beds)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_maximum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_minimum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_capacity)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -95,14 +95,14 @@
             this.tabPage1.Controls.Add(this.nud_number_of_bathrooms);
             this.tabPage1.Controls.Add(this.nud_number_of_bedrooms);
             this.tabPage1.Controls.Add(this.nud_number_of_beds);
-            this.tabPage1.Controls.Add(this.numericUpDown2);
-            this.tabPage1.Controls.Add(this.numericUpDown1);
+            this.tabPage1.Controls.Add(this.nud_maximum);
+            this.tabPage1.Controls.Add(this.nud_minimum);
             this.tabPage1.Controls.Add(this.nud_capacity);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.tb_host_rules);
+            this.tabPage1.Controls.Add(this.tb_desciption);
+            this.tabPage1.Controls.Add(this.tb_exact_address);
+            this.tabPage1.Controls.Add(this.tb_approxinmate_address);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.tb_title);
@@ -146,19 +146,19 @@
             this.nud_number_of_beds.Size = new System.Drawing.Size(38, 25);
             this.nud_number_of_beds.TabIndex = 3;
             // 
-            // numericUpDown2
+            // nud_maximum
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(513, 370);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(38, 25);
-            this.numericUpDown2.TabIndex = 3;
+            this.nud_maximum.Location = new System.Drawing.Point(513, 370);
+            this.nud_maximum.Name = "nud_maximum";
+            this.nud_maximum.Size = new System.Drawing.Size(38, 25);
+            this.nud_maximum.TabIndex = 3;
             // 
-            // numericUpDown1
+            // nud_minimum
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(336, 370);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(38, 25);
-            this.numericUpDown1.TabIndex = 3;
+            this.nud_minimum.Location = new System.Drawing.Point(336, 370);
+            this.nud_minimum.Name = "nud_minimum";
+            this.nud_minimum.Size = new System.Drawing.Size(38, 25);
+            this.nud_minimum.TabIndex = 3;
             // 
             // nud_capacity
             // 
@@ -176,36 +176,36 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Number of Bathrooms:";
             // 
-            // textBox4
+            // tb_host_rules
             // 
-            this.textBox4.Location = new System.Drawing.Point(168, 277);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(711, 68);
-            this.textBox4.TabIndex = 2;
+            this.tb_host_rules.Location = new System.Drawing.Point(168, 277);
+            this.tb_host_rules.Multiline = true;
+            this.tb_host_rules.Name = "tb_host_rules";
+            this.tb_host_rules.Size = new System.Drawing.Size(711, 68);
+            this.tb_host_rules.TabIndex = 2;
             // 
-            // textBox3
+            // tb_desciption
             // 
-            this.textBox3.Location = new System.Drawing.Point(168, 203);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(711, 68);
-            this.textBox3.TabIndex = 2;
+            this.tb_desciption.Location = new System.Drawing.Point(168, 203);
+            this.tb_desciption.Multiline = true;
+            this.tb_desciption.Name = "tb_desciption";
+            this.tb_desciption.Size = new System.Drawing.Size(711, 68);
+            this.tb_desciption.TabIndex = 2;
             // 
-            // textBox2
+            // tb_exact_address
             // 
-            this.textBox2.Location = new System.Drawing.Point(168, 129);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(711, 68);
-            this.textBox2.TabIndex = 2;
+            this.tb_exact_address.Location = new System.Drawing.Point(168, 129);
+            this.tb_exact_address.Multiline = true;
+            this.tb_exact_address.Name = "tb_exact_address";
+            this.tb_exact_address.Size = new System.Drawing.Size(711, 68);
+            this.tb_exact_address.TabIndex = 2;
             // 
-            // textBox1
+            // tb_approxinmate_address
             // 
-            this.textBox1.Location = new System.Drawing.Point(168, 98);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(711, 25);
-            this.textBox1.TabIndex = 2;
+            this.tb_approxinmate_address.Location = new System.Drawing.Point(168, 98);
+            this.tb_approxinmate_address.Name = "tb_approxinmate_address";
+            this.tb_approxinmate_address.Size = new System.Drawing.Size(711, 25);
+            this.tb_approxinmate_address.TabIndex = 2;
             // 
             // label11
             // 
@@ -435,6 +435,7 @@
             this.btn_next.TabIndex = 5;
             this.btn_next.Text = "Next";
             this.btn_next.UseVisualStyleBackColor = true;
+            this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
             // AddEditForm
             // 
@@ -454,8 +455,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_bathrooms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_bedrooms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_number_of_beds)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_maximum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_minimum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_capacity)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -487,16 +488,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_host_rules;
+        private System.Windows.Forms.TextBox tb_desciption;
+        private System.Windows.Forms.TextBox tb_exact_address;
+        private System.Windows.Forms.TextBox tb_approxinmate_address;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nud_maximum;
+        private System.Windows.Forms.NumericUpDown nud_minimum;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;

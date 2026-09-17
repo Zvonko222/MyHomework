@@ -24,6 +24,10 @@ namespace Session2.Forms
             
             this.Text = "Seoul Stay - Edit Listing "+ list.title;
             tb_title.Text = addListDataModel.title;
+            btn_close_finish.Text = "Close";
+
+            btn_next.Visible = false;
+
             //....
 
         }
@@ -31,6 +35,25 @@ namespace Session2.Forms
         public AddEditForm()
         {
             InitializeComponent();
+
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(tabControl1.SelectedIndex == 0)
+            {
+                btn_next.Visible = true;
+                btn_close_finish.Text = "Cancel";
+            }else if(tabControl1.SelectedIndex == 1)
+            {
+                btn_close_finish.Text = "Cancel";
+                btn_next.Visible = true;
+            }else if(tabControl1.SelectedIndex == 2)
+            {
+                btn_next.Visible = false;
+                btn_close_finish.Text = "Finish";
+            }
         }
 
         public AddEditForm(string v)
@@ -38,11 +61,14 @@ namespace Session2.Forms
             InitializeComponent();
 
             this.v = v;
-            MessageBox.Show(v);
+            //MessageBox.Show(v);
             if (v == "AddForm")
             {
                 this.Text = "Seoul Stay - Add Listing";
+                btn_close_finish.Text = "Cancel";
             }
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -62,6 +88,8 @@ namespace Session2.Forms
 
         private void AddEditForm_Load(object sender, EventArgs e)
         {
+            
+
             dataGridView1.Rows.Add("Tv");
             dataGridView1.Rows.Add("Music Player");
             dataGridView1.Rows.Add("BBQ Grill");
@@ -110,6 +138,70 @@ namespace Session2.Forms
         {
             //save and close
             //....
+
+
+            ManagementForm managementForm = new ManagementForm();
+            managementForm.Show();
+            this.Hide();
+        }
+
+        private void btn_next_Click(object sender, EventArgs e)
+        {
+            // load
+            ListingDetails listingDetails = new ListingDetails();
+            listingDetails.type = cb_type.Text;
+            listingDetails.title = tb_title.Text;
+            listingDetails.capacity = Convert.ToInt32(nud_capacity.Value);
+            listingDetails.numberOfBathrooms = Convert.ToInt32(nud_number_of_bathrooms);
+            listingDetails.numberOfBeds = Convert.ToInt32(nud_number_of_beds);
+            listingDetails.numberOfBedrooms = Convert.ToInt32(nud_number_of_bedrooms);
+            listingDetails.approximateAddress = tb_approxinmate_address.Text;
+            listingDetails.exactAdress = tb_exact_address.Text;
+            listingDetails.desciption = tb_desciption.Text;
+            listingDetails.hostRules = tb_host_rules.Text;
+            listingDetails.minimum = Convert.ToInt32(nud_minimum.Value);
+            listingDetails.maximum = Convert.ToInt32(nud_maximum.Value);
+
+            // Verification data is null
+            if (string.IsNullOrWhiteSpace(listingDetails.type))
+            {
+                MessageBox.Show("Type doesnt null");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(listingDetails.title))
+            {
+                MessageBox.Show("Title doesnt null");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(listingDetails.approximateAddress)){
+                MessageBox.Show("Appoximate Address doesnt is null");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(listingDetails.exactAdress))
+            {
+                MessageBox.Show("Exact Address doesnt is null");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(listingDetails.desciption))
+            {
+                MessageBox.Show("Desciption doesnt is null");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(listingDetails.hostRules))
+            {
+                MessageBox.Show("Host Rules doesnt is null");
+                return;
+            }
+
+            // next
+            if(tabControl1.SelectedIndex == 0)
+            {
+                tabControl1.SelectedIndex = 1;
+            }else if(tabControl1.SelectedIndex == 1)
+            {
+                tabControl1.SelectedIndex = 2;
+                btn_next.Visible = false;
+            }
 
         }
     }

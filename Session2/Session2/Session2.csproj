@@ -80,6 +80,7 @@
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AddListDataModel.cs" />
+    <Compile Include="Models\ListingDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\DBHelper.cs" />
