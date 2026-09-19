@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Session3.Models
 {
-    public class Users
+    public class UserDto
     {
         public int id { get; set; }
         public string username{ get; set; }

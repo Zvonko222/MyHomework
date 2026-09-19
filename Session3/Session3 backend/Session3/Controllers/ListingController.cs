@@ -22,76 +22,68 @@ namespace Session3.Controllers
         // Post: Listing
         [Route("property")]
         [HttpPost]
-        public ApiResult<List<PropertyDto>> postPerproty(int userId)
+        public ApiResult<object> postPerproty(int userId)
         {
-            string sql = "" +
-                "select ip.Date,i.Title,ip.ID,i.MaximumNights,i.MinimumNights " +
-                "from Items i " +
-                "join ItemPrices ip " +
-                "on i.ItemTypeID=ip.ID " +
-                "join Users u " +
-                "on u.ID = i.UserID " +
-                "where u.ID = " + userId +
-                "order by i.MaximumNights";
-
-            DataTable table = DBHelper.executeQuery(sql);
-            List<PropertyDto> propertyDtos = new List<PropertyDto>();
-
-            foreach (DataRow row in table.Rows)
+            using (var db = new WorldSkillsBookingEntities())
             {
-                PropertyDto propertyDto = new PropertyDto();  
-                propertyDto.title = row["Title"].ToString();
-                propertyDto.date = row["Date"].ToString();
-                propertyDto.id = Convert.ToInt32(row["ID"]);
-                propertyDto.minimumNights = Convert.ToInt32(row["MinimumNights"]);
-                propertyDto.maximumNights = Convert.ToInt32(row["MaximumNights"]);
-                propertyDto.userId = userId;
+                var data = db.Items
+                    .Where(i => i.User.ID == userId)
+                    .SelectMany(i => i.ItemPrices)
+                    .Select(ip => new
+                    {
+                        itemId = ip.Item.ID,
+                        date = ip.Date,
+                        itemPriceId = ip.ID,
+                        itemTitle = ip.Item.Title,
+                        maximumNights = ip.Item.MaximumNights,
+                        minimumNights = ip.Item.MinimumNights,
+                        userId = userId,
+                        isInnerFiveDay = (ip.Item.MaximumNights - ip.Item.MinimumNights) <= 5
+                    })
+                    .OrderBy(x => x.maximumNights)
+                    .ToList();
                 
-                // date verification
-                DateTime date = DateTime.Parse(row["Date"].ToString());
-                if (date.AddDays(5) >= DateTime.Now)
+                if(!data.Any())
                 {
-                    propertyDto.isInnerFiveDay = false;
+                    return ApiResult<object>.fail(null, "data does not exist", 404);
                 }
-                else
+                var result = data.Select(x => new
                 {
-                    propertyDto.isInnerFiveDay = true;
-                }
-
-                propertyDtos.Add(propertyDto);
+                    x.itemId,
+                    date = x.date.ToString("yyyy-MM-dd"),
+                    x.itemPriceId,
+                    x.itemTitle,
+                    x.maximumNights,
+                    x.minimumNights,
+                    x.userId,
+                    x.isInnerFiveDay,
+                });
+                return ApiResult<object>.success(result, "Query success");
             }
-            return ApiResult<List<PropertyDto>>.success(propertyDtos, "Query success");
-
         }
 
         [Route("property/{itemPricesId}")]
         [HttpGet]
-        public ApiResult<List<Book>> getPropertyData(int itemPricesId)
+        public ApiResult<object> getPropertyData(int itemPricesId)
         {
-            string sql = $"" +
-                $"select b.BookingDate,b.AmountPaid " +
-                $"from ItemPrices ip " +
-                $"join BookingDetails bd " +
-                $"on ip.ID = bd.ItemPriceID " +
-                $"join Bookings b " +
-                $"on b.ID = bd.BookingID " +
-                $"where ip.ID={itemPricesId}";
-            DataTable table = DBHelper.executeQuery(sql);
-            List<Book> books = new List<Book>();
-
-            if (table.Rows.Count <= 0)
+            using(var db = new WorldSkillsBookingEntities())
             {
-                return ApiResult<List<Book>>.fail(null, "book count is null", 602);
+                var data = db.ItemPrices
+                    .Where(ip => ip.ID == itemPricesId)
+                    .SelectMany(ip => ip.BookingDetails)
+                    .Select(bd => new
+                    {
+                        bookingDate = bd.Booking.BookingDate,
+                        amoutPaid = bd.Booking.AmountPaid
+                    })
+                    .ToList();
+                if (!data.Any())
+                {
+                    return ApiResult<object>.fail(null, "data does not exist", 404);
+                }
+                return ApiResult<object>.success(data, "Query success");
             }
-
-            foreach (DataRow row in table.Rows)
-            {
-                Book book = new Book();
-                book.date = row["BookingDate"].ToString();
-                book.paid = row["AmountPaid"].ToString();
-                books.Add(book);
-            }
-            return ApiResult<List<Book>>.success(books, "Query Success");
+         
         }
 
     }

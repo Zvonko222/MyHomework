@@ -1,4 +1,5 @@
 ﻿using Session2.Forms;
+using Session2.Models;
 using Session2.Tools;
 using System;
 using System.Collections.Generic;
@@ -32,54 +33,49 @@ namespace Session2
             string username = tb_user.Text;
             string pwd = tb_password.Text;
 
-            string _sql = $"" +
-                $"select Password " +
-                $"from Users " +
-                $"where FullName = '{employee}' ";
-            DataTable _table = DBHelper.executeQuery(_sql);
             if (string.IsNullOrWhiteSpace(tb_employee.Text))
             {
-                string sql = $"" +
-                $"select Password " +
-                $"from Users " +
-                $"where Username = '{username}' ";
-                DataTable table = DBHelper.executeQuery(sql);
-                if (table.Rows.Count == 0)
+                using(var db = new Session2Entities())
                 {
-                    //ERROR
-                    MessageBox.Show("ERROR");
-                    return;
-                }
-                if (table.Rows[0]["Password"].ToString() == pwd)
-                {
-                    MessageBox.Show("Login Successfully");
-                    ManagementForm managementForm = new ManagementForm();
-                    managementForm.Show();
-                    this.Hide();
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Password is incorrect");
-                    return;
+                    var dbPwd = db.Users
+                        .Where(u => u.Username == username)
+                        .Select(u => u.Password)
+                        .FirstOrDefault();
+                    if(dbPwd == null || dbPwd != pwd)
+                    {
+                        MessageBox.Show("ERROR");
+                        return;
+                    }
+                    if(dbPwd == pwd)
+                    {
+                        MessageBox.Show("Login Successfully");
+                        ManagementForm managementForm = new ManagementForm();
+                        managementForm.Show();
+                        this.Hide();
+                        return;
+                    }
+                    
                 }
             }
             else
             {
-                if (_table.Rows.Count <= 0)
+                using (var db = new Session2Entities())
                 {
-                    MessageBox.Show("this doesnt has this Employee");
-                    return;
-                }
-                else if(pwd == _table.Rows[0]["Password"].ToString())
-                {
+                    var data = db.Users
+                        .Where(u => u.FullName == employee)
+                        .Select(u => u.Password)
+                        .FirstOrDefault();
+                    if (data == null)
+                    {
+                        MessageBox.Show("");
+                        return;
+                    }
                     MessageBox.Show("Login Successfully");
                     ManagementForm managementForm = new ManagementForm();
                     managementForm.Show();
                     this.Hide();
                     return;
                 }
-                
             }
 
             // Login Again Verification

@@ -13,11 +13,6 @@ namespace Session3.Controllers
     [RoutePrefix("api")]
     public class MyController : ApiController
     {
-
-
-       
- 
-
         [Route("test")]
         [HttpGet]
         public IHttpActionResult test()

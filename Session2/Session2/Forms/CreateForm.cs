@@ -1,4 +1,5 @@
-﻿using Session2.Tools;
+﻿using Session2.Models;
+using Session2.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +43,7 @@ namespace Session2.Forms
             string pwd = tb_password.Text;
             string pwdAgain = tb_password_again.Text;
             string gender = "";
-            string birthday = dateTimePicker1.Value.ToString();
+            Nullable < System.DateTime > birthday = dateTimePicker1.Value;
             int numberOfFamliyMembers = Convert.ToInt32(nud_number_of_family_members.Value);
 
 
@@ -96,38 +97,49 @@ namespace Session2.Forms
             }
 
             // Query
-            string sql = $"" +
-                $"select Username " +
-                $"from Users " +
-                $"where Username = '{username}'";
-
-
-
-            DataTable table = DBHelper.executeQuery(sql);
-            if (table.Rows.Count != 0)
+            using (var db = new Session2Entities())
             {
-                MessageBox.Show("This username is exsit");
-                return;
+                var dbUsername = db.Users
+                    .Where(u => u.Username == username)
+                    .Select(u => u.Username)
+                    .FirstOrDefault();
+                if(dbUsername != null)
+                {
+                    MessageBox.Show("This username is exist");
+                    return;
+                }
             }
 
             // Insert
-            sql = $"" +
-                $"insert into Users ([Username],[FullName],[Password],[BirthDate],[Gender],[FamilyCount],[UserTypeID]) " +
-                $"values ('{username}','{fullName}','{pwd}','{birthday}','{gender}','{numberOfFamliyMembers}','1') ";
-            bool result = DBHelper.executeNonQuery(sql);
-            if (result)
+            using (var db = new Session2Entities())
             {
-                MessageBox.Show("Register Successfully");
-                WelcomeForm welcomeForm = new WelcomeForm();
-                welcomeForm.Show();
-                this.Hide();
-                return;
+                User user = new User();
+                user.Username = username;
+                user.FullName = fullName;
+                user.Password = pwd;
+                user.BirthDate = birthday;
+                user.Gender = gender;
+                user.FamilyCount = numberOfFamliyMembers;
+                user.UserTypeID = 1;
+
+                var data = db.Users
+                    .Add(user);
+                int result = db.SaveChanges();
+                if(result <= 0)
+                {
+                    MessageBox.Show("Register Failed");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Register Successfully");
+                    WelcomeForm welcomeForm = new WelcomeForm();
+                    welcomeForm.Show();
+                    this.Hide();
+                    return;
+                }
             }
-            else
-            {
-                MessageBox.Show("Register Failed");
-                return;
-            }
+      
         }
 
         private void CreateForm_FormClosed(object sender, FormClosedEventArgs e)

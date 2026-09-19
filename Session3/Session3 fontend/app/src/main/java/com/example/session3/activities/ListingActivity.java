@@ -70,16 +70,19 @@ public class ListingActivity extends AppCompatActivity {
                     for (int i = 0; i < ja.length(); i++) {
                         JSONObject jo = ja.getJSONObject(i);
                         Property property = new Property();
-                        property.title = jo.getString("title");
+                        property.title = jo.getString("itemTitle");
                         property.date = jo.getString("date");
-                        property.id = jo.getString("id");
+                        property.id = jo.getInt("itemId");
                         property.minimumNights = jo.getInt("minimumNights");
                         property.maximumNights = jo.getInt("maximumNights");
                         property.isInnerFiveDay = jo.getBoolean("isInnerFiveDay");
                         property.userId = jo.getInt("userId");
                         properties.add(property);
                     }
-                    adapter.notifyDataSetChanged();
+                    runOnUiThread(()->{
+                        adapter.notifyDataSetChanged();
+
+                    });
                 }
             } catch (Exception e) {
                 Log.e("TAG", "JSON ERROR ", e);

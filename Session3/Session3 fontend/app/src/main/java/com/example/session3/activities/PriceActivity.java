@@ -103,14 +103,12 @@ public class PriceActivity extends AppCompatActivity {
 
                 try {
                     JSONObject _jo = new JSONObject();
-                    _jo.put("userId",userId );
+                    _jo.put("userId",userId);
                     _jo.put("itemId",itemId);
 
                     String result = ApiRequest.post("price",_jo.toString());
-
-
                     Log.d("HTTP", "result = " + result);
-                    JSONObject _jo = new JSONObject(result);
+//                    JSONObject _jo = new JSONObject(result);
                     int code = _jo.getInt("code");
 
                     if(code == 200){

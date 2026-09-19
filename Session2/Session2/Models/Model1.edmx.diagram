@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="035def3411bb4fce9c2089c69f0ad367" Name="Diagram1">
+        <EntityTypeShape EntityType="Session2Model.Amenity" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.Area" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.Attraction" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.ItemAmenity" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.ItemAttraction" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.Item" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.ItemType" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.User" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Session2Model.UserType" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <AssociationConnector Association="Session2Model.FK_ItemAmenities_Amenities" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_Attractions_Areas" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_Items_Areas" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_ItemAttractions_Attractions" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_ItemAmenities_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_ItemAttractions_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_Items_ItemTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_Items_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Session2Model.FK_Users_UserTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

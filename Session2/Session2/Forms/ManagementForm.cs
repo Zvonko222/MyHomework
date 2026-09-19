@@ -39,22 +39,24 @@ namespace Session2.Forms
 
         private void ManagementForm_Load(object sender, EventArgs e)
         {
-            string sql = $"" +
-                $"select " +
-                $"i.Title, " +
-                $"i.Capacity, " +
-                $"a.Name as Area, " +
-                $"it.Name as Type " +
-                $"from items i " +
-                $"join Areas a " +
-                $"on a.ID = i.AreaID " +
-                $"join ItemTypes it " +
-                $"on it.ID = i.ItemTypeID ";
-            table = DBHelper.executeQuery(sql);
-            dataGridView1.DataSource = table;
-            dataGridView2.DataSource = table;
+            using(var db = new Session2Entities())
+            {
+                var data = db.Items
+                    .Select(i => new
+                    {
+                        Title = i.Title,
+                        Capacity = i.Capacity,
+                        Area = i.Area.Name,
+                        Type = i.ItemType.Name
+                    })
+                    .ToList();
+                dataGridView1.DataSource = data;
+                dataGridView2.DataSource = data;
+                l_item_found.Text = data.Count + " items found.";
+            }
 
-            l_item_found.Text = table.Rows.Count + " items found.";
+
+            
 
             if (!dataGridView2.Columns.Contains("btnEdit"))
             {

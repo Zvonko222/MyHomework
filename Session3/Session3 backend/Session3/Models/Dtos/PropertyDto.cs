@@ -8,11 +8,11 @@ namespace Session3.Models.Dtos
     public class PropertyDto
     {
         public int userId { get; set; }
-        public int id { get; set; }
+        public int itemId { get; set; }
         public string title { get; set; }
         public int minimumNights { get; set; }
         public int maximumNights { get; set; }
-        public string date { get; set; }
+        public System.DateTime date { get; set; }
         public bool isInnerFiveDay { get; set; }
 
     }

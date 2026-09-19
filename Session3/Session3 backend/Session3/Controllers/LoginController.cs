@@ -15,29 +15,33 @@ namespace Session3.Controllers
         // Post: Login
         [Route("login")]
         [HttpPost]
-        public ApiResult<object> login(Users user)
+        public ApiResult<object> login(UserDto user)
         {
-            string sql = $"" +
-                $"select * " +
-                $"from Users " +
-                $"where Username = '{user.username}'";
+            using(var db = new WorldSkillsBookingEntities())
+            {
+                var data = db.Users
+                    .Where(u => u.Username == user.username)
+                    .Select(u => new
+                    {
+                        userId = u.ID,
+                        password = u.Password
+                    })
+                    .FirstOrDefault();
+                if(data == null)
+                {
+                    return ApiResult<object>.fail(null, "this username doesnt exist", 404);
+                }
+                if(data.password == user.password)
+                {
+                    return ApiResult<object>.success(data.userId, "Login Success");
+                }
+                else
+                {
+                    return ApiResult<object>.fail(null, "Password is mistake", 401);
 
-            DataTable table = DBHelper.executeQuery(sql);
-            if (table.Rows.Count == 0)
-            {
-                return ApiResult<object>.fail(null, "this username doesnt exist", 500);
-            }
-            DataRow row = table.Rows[0];
-            if (user.password == row["password"].ToString())
-            {
-                string id = row["ID"].ToString();
-                return ApiResult<object>.success(id, "Login Success");
-            }
-            else
-            {
-                return ApiResult<object>.fail(null, "password is mistake", 601);
-            }
+                }
 
+            }
         }
     }
 }
