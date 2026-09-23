@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Session2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArrangementStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="MaximumPeople" Type="int" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="InventoryNumber" Type="int" Nullable="false" />
+          <Property Name="IsAvailable" Type="bit" Nullable="false" />
+          <Property Name="Cover" Type="nvarchar" MaxLength="260" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlowerCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OpenStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StationId" Type="int" Nullable="false" />
+          <Property Name="NumberOfPeople" Type="int" Nullable="false" />
+          <Property Name="HasVase" Type="bit" Nullable="false" />
+          <Property Name="OpenTime" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="IsCheckout" Type="bit" Nullable="false" />
+          <Property Name="CheckOutTime" Type="datetime2" Precision="0" />
+          <Property Name="TotalAmount" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderFlowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpenStationId" Type="int" Nullable="false" />
+          <Property Name="FlowerId" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="OrderTime" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoreImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="Src" Type="nvarchar" MaxLength="260" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ArrangementStation_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="ArrangementStation" Type="Self.ArrangementStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArrangementStation">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flower_FlowerCategory">
+          <End Role="FlowerCategory" Type="Self.FlowerCategory" Multiplicity="1" />
+          <End Role="Flower" Type="Self.Flower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlowerCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Flower">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpenStation_ArrangementStation">
+          <End Role="ArrangementStation" Type="Self.ArrangementStation" Multiplicity="1" />
+          <End Role="OpenStation" Type="Self.OpenStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArrangementStation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OpenStation">
+              <PropertyRef Name="StationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderFlowers_Flower">
+          <End Role="Flower" Type="Self.Flower" Multiplicity="1" />
+          <End Role="OrderFlowers" Type="Self.OrderFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flower">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderFlowers_OpenStation">
+          <End Role="OpenStation" Type="Self.OpenStation" Multiplicity="1" />
+          <End Role="OrderFlowers" Type="Self.OrderFlowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpenStation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderFlowers">
+              <PropertyRef Name="OpenStationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreImages_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreImages" Type="Self.StoreImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoreImages">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Session2ModelStoreContainer">
+          <EntitySet Name="ArrangementStation" EntityType="Self.ArrangementStation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flower" EntityType="Self.Flower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlowerCategory" EntityType="Self.FlowerCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpenStation" EntityType="Self.OpenStation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderFlowers" EntityType="Self.OrderFlowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreImages" EntityType="Self.StoreImages" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArrangementStation_Store" Association="Self.FK_ArrangementStation_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="ArrangementStation" EntitySet="ArrangementStation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flower_FlowerCategory" Association="Self.FK_Flower_FlowerCategory">
+            <End Role="FlowerCategory" EntitySet="FlowerCategory" />
+            <End Role="Flower" EntitySet="Flower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpenStation_ArrangementStation" Association="Self.FK_OpenStation_ArrangementStation">
+            <End Role="ArrangementStation" EntitySet="ArrangementStation" />
+            <End Role="OpenStation" EntitySet="OpenStation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderFlowers_Flower" Association="Self.FK_OrderFlowers_Flower">
+            <End Role="Flower" EntitySet="Flower" />
+            <End Role="OrderFlowers" EntitySet="OrderFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderFlowers_OpenStation" Association="Self.FK_OrderFlowers_OpenStation">
+            <End Role="OpenStation" EntitySet="OpenStation" />
+            <End Role="OrderFlowers" EntitySet="OrderFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Role" Association="Self.FK_Staff_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Store" Association="Self.FK_Staff_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreImages_Store" Association="Self.FK_StoreImages_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="StoreImages" EntitySet="StoreImages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Session2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ArrangementStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="MaximumPeople" Type="Int32" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_ArrangementStation_Store" FromRole="ArrangementStation" ToRole="Store" />
+          <NavigationProperty Name="OpenStations" Relationship="Self.FK_OpenStation_ArrangementStation" FromRole="ArrangementStation" ToRole="OpenStation" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="InventoryNumber" Type="Int32" Nullable="false" />
+          <Property Name="IsAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="Cover" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FlowerCategory" Relationship="Self.FK_Flower_FlowerCategory" FromRole="Flower" ToRole="FlowerCategory" />
+          <NavigationProperty Name="OrderFlowers" Relationship="Self.FK_OrderFlowers_Flower" FromRole="Flower" ToRole="OrderFlowers" />
+        </EntityType>
+        <EntityType Name="FlowerCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Flowers" Relationship="Self.FK_Flower_FlowerCategory" FromRole="FlowerCategory" ToRole="Flower" />
+        </EntityType>
+        <EntityType Name="OpenStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationId" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfPeople" Type="Int32" Nullable="false" />
+          <Property Name="HasVase" Type="Boolean" Nullable="false" />
+          <Property Name="OpenTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsCheckout" Type="Boolean" Nullable="false" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="0" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ArrangementStation" Relationship="Self.FK_OpenStation_ArrangementStation" FromRole="OpenStation" ToRole="ArrangementStation" />
+          <NavigationProperty Name="OrderFlowers" Relationship="Self.FK_OrderFlowers_OpenStation" FromRole="OpenStation" ToRole="OrderFlowers" />
+        </EntityType>
+        <EntityType Name="OrderFlower">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpenStationId" Type="Int32" Nullable="false" />
+          <Property Name="FlowerId" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Flower" Relationship="Self.FK_OrderFlowers_Flower" FromRole="OrderFlowers" ToRole="Flower" />
+          <NavigationProperty Name="OpenStation" Relationship="Self.FK_OrderFlowers_OpenStation" FromRole="OrderFlowers" ToRole="OpenStation" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Role" FromRole="Role" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_Staff_Store" FromRole="Staff" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ArrangementStations" Relationship="Self.FK_ArrangementStation_Store" FromRole="Store" ToRole="ArrangementStation" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Store" FromRole="Store" ToRole="Staff" />
+          <NavigationProperty Name="StoreImages" Relationship="Self.FK_StoreImages_Store" FromRole="Store" ToRole="StoreImages" />
+        </EntityType>
+        <EntityType Name="StoreImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="Src" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Store" Relationship="Self.FK_StoreImages_Store" FromRole="StoreImages" ToRole="Store" />
+        </EntityType>
+        <Association Name="FK_ArrangementStation_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="ArrangementStation" Type="Self.ArrangementStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArrangementStation">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpenStation_ArrangementStation">
+          <End Role="ArrangementStation" Type="Self.ArrangementStation" Multiplicity="1" />
+          <End Role="OpenStation" Type="Self.OpenStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArrangementStation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OpenStation">
+              <PropertyRef Name="StationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flower_FlowerCategory">
+          <End Role="FlowerCategory" Type="Self.FlowerCategory" Multiplicity="1" />
+          <End Role="Flower" Type="Self.Flower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlowerCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Flower">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderFlowers_Flower">
+          <End Role="Flower" Type="Self.Flower" Multiplicity="1" />
+          <End Role="OrderFlowers" Type="Self.OrderFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flower">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderFlowers">
+              <PropertyRef Name="FlowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderFlowers_OpenStation">
+          <End Role="OpenStation" Type="Self.OpenStation" Multiplicity="1" />
+          <End Role="OrderFlowers" Type="Self.OrderFlower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpenStation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderFlowers">
+              <PropertyRef Name="OpenStationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StoreImages_Store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="StoreImages" Type="Self.StoreImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StoreImages">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Session2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArrangementStations" EntityType="Self.ArrangementStation" />
+          <EntitySet Name="Flowers" EntityType="Self.Flower" />
+          <EntitySet Name="FlowerCategories" EntityType="Self.FlowerCategory" />
+          <EntitySet Name="OpenStations" EntityType="Self.OpenStation" />
+          <EntitySet Name="OrderFlowers" EntityType="Self.OrderFlower" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Stores" EntityType="Self.Store" />
+          <EntitySet Name="StoreImages" EntityType="Self.StoreImage" />
+          <AssociationSet Name="FK_ArrangementStation_Store" Association="Self.FK_ArrangementStation_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="ArrangementStation" EntitySet="ArrangementStations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpenStation_ArrangementStation" Association="Self.FK_OpenStation_ArrangementStation">
+            <End Role="ArrangementStation" EntitySet="ArrangementStations" />
+            <End Role="OpenStation" EntitySet="OpenStations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flower_FlowerCategory" Association="Self.FK_Flower_FlowerCategory">
+            <End Role="FlowerCategory" EntitySet="FlowerCategories" />
+            <End Role="Flower" EntitySet="Flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderFlowers_Flower" Association="Self.FK_OrderFlowers_Flower">
+            <End Role="Flower" EntitySet="Flowers" />
+            <End Role="OrderFlowers" EntitySet="OrderFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderFlowers_OpenStation" Association="Self.FK_OrderFlowers_OpenStation">
+            <End Role="OpenStation" EntitySet="OpenStations" />
+            <End Role="OrderFlowers" EntitySet="OrderFlowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Role" Association="Self.FK_Staff_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Store" Association="Self.FK_Staff_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StoreImages_Store" Association="Self.FK_StoreImages_Store">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="StoreImages" EntitySet="StoreImages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Session2ModelStoreContainer" CdmEntityContainer="Session2Entities">
+          <EntitySetMapping Name="ArrangementStations">
+            <EntityTypeMapping TypeName="Session2Model.ArrangementStation">
+              <MappingFragment StoreEntitySet="ArrangementStation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="MaximumPeople" ColumnName="MaximumPeople" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flowers">
+            <EntityTypeMapping TypeName="Session2Model.Flower">
+              <MappingFragment StoreEntitySet="Flower">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowerCategories">
+            <EntityTypeMapping TypeName="Session2Model.FlowerCategory">
+              <MappingFragment StoreEntitySet="FlowerCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpenStations">
+            <EntityTypeMapping TypeName="Session2Model.OpenStation">
+              <MappingFragment StoreEntitySet="OpenStation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StationId" ColumnName="StationId" />
+                <ScalarProperty Name="NumberOfPeople" ColumnName="NumberOfPeople" />
+                <ScalarProperty Name="HasVase" ColumnName="HasVase" />
+                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+                <ScalarProperty Name="IsCheckout" ColumnName="IsCheckout" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderFlowers">
+            <EntityTypeMapping TypeName="Session2Model.OrderFlower">
+              <MappingFragment StoreEntitySet="OrderFlowers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OpenStationId" ColumnName="OpenStationId" />
+                <ScalarProperty Name="FlowerId" ColumnName="FlowerId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Session2Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="Session2Model.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="Session2Model.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreImages">
+            <EntityTypeMapping TypeName="Session2Model.StoreImage">
+              <MappingFragment StoreEntitySet="StoreImages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Src" ColumnName="Src" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

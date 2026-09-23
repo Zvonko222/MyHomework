@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home_page"
+        android:title="Home Page"/>
+    <item
+        android:id="@+id/menu_station_list"
+        android:title="Station List"/>
+    <item
+        android:id="@+id/menu_Sales_data_statistics"
+        android:title="Sales Data Statistics"/>
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Logout"/>
+</menu>
