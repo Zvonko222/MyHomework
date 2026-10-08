@@ -164,9 +164,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\ApiResult.cs" />
     <Compile Include="Controllers\ArrangementController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\default\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\default\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +175,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dtos\LoginDto.cs" />
+    <Compile Include="Models\Dtos\OpenStationDto.cs" />
     <Compile Include="Models\Flower.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

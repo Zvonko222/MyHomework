@@ -1,4 +1,4 @@
-package com.example.s2.adpters;
+package com.example.s2.ui.home;
 
 import android.view.LayoutInflater;
 import android.view.View;

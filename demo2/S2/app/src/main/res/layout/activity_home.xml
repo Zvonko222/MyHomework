@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HomeActivity"
+    tools:context=".ui.home.HomeActivity"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -55,6 +55,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:gravity="bottom"
+        android:id="@+id/navigation_home"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
         app:headerLayout="@layout/drawer_header"

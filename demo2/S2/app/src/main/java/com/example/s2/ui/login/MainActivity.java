@@ -1,4 +1,4 @@
-package com.example.s2.activities;
+package com.example.s2.ui.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.s2.R;
-import com.example.s2.tools.ApiRequest;
+import com.example.s2.ui.home.HomeActivity;
+import com.example.s2.util.network.ApiRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

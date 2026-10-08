@@ -39,3 +39,16 @@ local.properties
 # Database
 *.mdf
 *.ldf
+
+# .NET
+**/packages/
+**/bin/
+**/obj/
+.vs/
+
+# Android
+.gradle/
+**/build/
+.idea/
+local.properties
+*.iml

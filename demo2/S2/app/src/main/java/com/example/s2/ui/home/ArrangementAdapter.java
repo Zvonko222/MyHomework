@@ -1,4 +1,4 @@
-package com.example.s2.adpters;
+package com.example.s2.ui.home;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.s2.R;
-import com.example.s2.models.Arrangement;
+import com.example.s2.data.model.Arrangement;
 
 import java.util.List;
 

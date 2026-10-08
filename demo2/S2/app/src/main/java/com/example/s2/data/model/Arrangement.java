@@ -1,4 +1,4 @@
-package com.example.s2.models;
+package com.example.s2.data.model;
 
 public class Arrangement {
     //

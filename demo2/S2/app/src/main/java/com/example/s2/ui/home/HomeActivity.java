@@ -1,8 +1,10 @@
-package com.example.s2.activities;
+package com.example.s2.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,11 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.s2.R;
-import com.example.s2.adpters.ArrangementAdapter;
-import com.example.s2.adpters.SlideShowAdapter;
-import com.example.s2.models.Arrangement;
-import com.example.s2.tools.ApiRequest;
-import com.example.s2.tools.ApiResult;
+import com.example.s2.ui.DataActivity;
+import com.example.s2.ui.login.MainActivity;
+import com.example.s2.data.model.Arrangement;
+import com.example.s2.ui.station.StationActivity;
+import com.example.s2.util.network.ApiRequest;
+import com.example.s2.util.network.ApiResult;
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,6 +41,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,37 @@ public class HomeActivity extends AppCompatActivity {
         ViewPager2 vp  = findViewById(R.id.vp_home);
         RecyclerView rv = findViewById(R.id.rv_home);
         ImageView imgTab = findViewById(R.id.img_home);
-        DrawerLayout drawer = findViewById(R.id.main);
+        drawer = findViewById(R.id.main);
+        NavigationView navigationView = findViewById(R.id.navigation_home);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if(id==R.id.menu_home_page){
+                    drawer.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+                if(id==R.id.menu_logout){
+                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                if(id== R.id.menu_Sales_data_statistics){
+                    Intent intent = new Intent(HomeActivity.this, DataActivity.class);
+                    startActivity(intent);
+
+                    return true;
+                }
+                if(id==R.id.menu_station_list){
+                    Intent intent = new Intent(HomeActivity.this, StationActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         List<Integer> vpList = Arrays.asList(
                 R.drawable.store_01,
@@ -65,6 +100,8 @@ public class HomeActivity extends AppCompatActivity {
         imgTab.setOnClickListener(v->{
             drawer.openDrawer(GravityCompat.START);
         });
+
+
 
         // RecyclerView
         rv.setLayoutManager(new LinearLayoutManager(this));

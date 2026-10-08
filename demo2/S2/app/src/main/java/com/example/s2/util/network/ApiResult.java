@@ -1,4 +1,4 @@
-package com.example.s2.tools;
+package com.example.s2.util.network;
 
 public class ApiResult<T> {
     private int code;
