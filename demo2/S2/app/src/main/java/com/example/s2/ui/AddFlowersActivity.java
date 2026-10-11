@@ -71,7 +71,6 @@ public class AddFlowersActivity extends AppCompatActivity {
                     Toast.makeText(AddFlowersActivity.this, msg , Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Flower flower = result.get
             }
         });
     }

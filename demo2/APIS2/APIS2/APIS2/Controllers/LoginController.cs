@@ -13,6 +13,12 @@ namespace APIS2.Controllers
     [RoutePrefix("api")]
     public class LoginController : ApiController
     {
+        [Route("test"),HttpGet]
+        public ApiResult<object> GetTest()
+        {
+            return ApiResult<object>.success("successs", "success");
+        }
+
         [Route("login"),HttpPost]
         public ApiResult<object> PostLogin(LoginDto dto)
         {
