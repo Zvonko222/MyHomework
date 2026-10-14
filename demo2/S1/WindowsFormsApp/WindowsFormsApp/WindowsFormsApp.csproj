@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data\model\dto\FlowerDto.cs" />
+    <Compile Include="data\model\dto\HistoryDto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ui\centralManageForm\CentralHomeForm.cs">
@@ -95,12 +96,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PurchaseFlowersForm.resx</DependentUpon>
     </Compile>
+    <Compile Include="ui\manager\history\FlowerDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\manager\history\FlowerDetail.Designer.cs">
+      <DependentUpon>FlowerDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="ui\manager\history\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ui\manager\history\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ui\manager\history\OrderStatus.cs" />
     <Compile Include="ui\manager\ManageHomeForm.cs">
       <SubType>Form</SubType>
     </Compile>

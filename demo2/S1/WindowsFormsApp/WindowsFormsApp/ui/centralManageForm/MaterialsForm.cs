@@ -12,7 +12,7 @@ namespace WindowsFormsApp.ui.centralManageForm
 {
     public partial class MaterialsForm : Form
     {
-        public MaterialsForm()
+        public MaterialsForm(string staffId)
         {
             InitializeComponent();
         }
