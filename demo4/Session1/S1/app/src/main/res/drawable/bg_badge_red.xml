@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Small rounded label: used by the "Expired" signal of a vehicle -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/red" />
+    <corners android:radius="4dp" />
+    <padding
+        android:bottom="2dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="2dp" />
+</shape>

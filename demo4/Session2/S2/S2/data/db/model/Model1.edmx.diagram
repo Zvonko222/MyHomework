@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8576862ea5bd4267858ccf09c794bf48" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="S2DBModel.cargo_owner" Width="1.5" PointX="7.125" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.cargo_owner_rating" Width="2.125" PointX="9.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.container" Width="1.5" PointX="6.625" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.container_type" Width="1.5" PointX="8.625" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.country" Width="1.5" PointX="3.875" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.customs_officer" Width="1.5" PointX="9.375" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.declaration" Width="1.625" PointX="5.875" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.declaration_status" Width="2" PointX="2.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.declaration_status_change" Width="2.625" PointX="2.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.exception_type" Width="1.5" PointX="15.375" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.harmonized_system" Width="1.75" PointX="9.375" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.port" Width="1.5" PointX="2.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.role" Width="1.5" PointX="12.875" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.sc_status_change" Width="1.5" PointX="10.375" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.security_check" Width="1.5" PointX="9" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.security_check_exception" Width="2" PointX="11.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.security_check_status" Width="1.75" PointX="12.875" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.trade_mode" Width="1.5" PointX="0.875" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.unit" Width="1.5" PointX="7.875" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.voyage" Width="1.5" PointX="4.625" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.voyage_arrival_time_change" Width="1.5" PointX="4.625" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="S2DBModel.voyage_status" Width="1.5" PointX="2.375" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="S2DBModel.cargo_owner_cargo_owner_rating_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.container_container_type_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.container_voyage_voyage_number_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.declaration_container_container_no_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.security_check_container_container_no_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.FK_declaration_country" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.FK_port_country" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.customs_officer_role_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.security_check_customs_officer_job_number_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.security_check_exception_customs_officer_job_number_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.declaration_declaration_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.declaration_status_change_declaration_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.declaration_trade_mode_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.declaration_unit_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.FK_declaration_harmonized_system" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.declaration_status_change_declaration_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.sc_exception_exception_type_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.FK_voyage_port_departure" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.FK_voyage_port_destination" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.sc_status_change_security_check_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.sc_status_change_security_check_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.sc_exception_security_check_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.security_check_security_check_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.voyage_arrival_time_change_voyage_voyage_number_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.voyage_voyage_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S2DBModel.container_cargo_owner_id_fk" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

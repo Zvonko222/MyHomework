@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.home.declaration.DeclarationAddFragment">
+
+    <!-- Title bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/bold_title_button_font"
+            android:text="Add Declaration"
+            android:textColor="#D204346A"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold_title_button_font"
+                    android:text="Basic Information"
+                    android:textSize="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voyage Number"
+                    android:fontFamily="@font/light_main_text_font"
+                    android:layout_marginVertical="5dp"/>
+
+                <EditText
+                    android:id="@+id/et_add_declaration_voyage_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edit_text_white"
+                    android:padding="10dp" />
+                <TextView
+                    android:id="@+id/tv_declaration_add_estimated_arrival_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estimated Arrival Date: "/>
+                <!-- Container number -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Container Number"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/light_main_text_font"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/et_add_declaration_container_number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit_text_white"
+                        android:padding="10dp" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_add_declaration_search_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_edit_text_white"
+                        android:fontFamily="@font/bold_title_button_font"
+                        android:text="Search"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_declaration_add_container_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/light_main_text_font"
+                    android:text="The container has been found"
+                    android:visibility="invisible"/>
+                <!-- HS Code -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HS Code"
+                    android:fontFamily="@font/light_main_text_font"/>
+                <EditText
+                    android:id="@+id/et_add_declaration_hs_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_edit_text_white"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:padding="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country of Origin"
+                    android:fontFamily="@font/light_main_text_font"/>
+                <!-- Country of origin -->
+                <EditText
+                    android:id="@+id/et_add_declaration_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edit_text_white"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:padding="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trade Mode"
+                    android:fontFamily="@font/light_main_text_font"/>
+                <!-- Trade mode -->
+                <Spinner
+                    android:id="@+id/sp_add_declaration_trade_mode"
+                    android:background="@drawable/bg_edit_text_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp" />
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:fontFamily="@font/light_main_text_font"/>
+                <EditText
+                    android:id="@+id/et_add_declaration_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_edit_text_white"
+                    android:gravity="top"
+                    android:minLines="3"
+                    android:padding="10dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_add_declaration_next_page"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_button_blue"
+                    android:fontFamily="@font/bold_title_button_font"
+                    android:text="Next Page"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

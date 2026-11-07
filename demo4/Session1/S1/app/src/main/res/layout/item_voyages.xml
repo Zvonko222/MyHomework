@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@drawable/bg_linearlayout"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="COSCO077E"
+            android:id="@+id/tv_item_voyage_number"
+            android:fontFamily="@font/bold_title_button_font"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arrived"
+            android:id="@+id/tv_item_voyage_status"
+            android:fontFamily="@font/bold_title_button_font"
+            android:gravity="end"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="America"
+                android:textSize="20dp"
+                android:id="@+id/tv_item_departure_country_name"
+                android:fontFamily="@font/bold_title_button_font"/>
+            <TextView
+                android:id="@+id/tv_item_departure_port_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/light_main_text_font"
+                android:text="Port of Los Angeles"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:src="@drawable/outline_arrow_right_alt_24"
+            android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHINA"
+                android:id="@+id/tv_item_destination_country_name"
+                android:textSize="20dp"
+                android:fontFamily="@font/bold_title_button_font"/>
+            <TextView
+                android:id="@+id/tv_item_destination_port_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/light_main_text_font"
+                android:text="Port of Xiamen"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_item_departure_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Departure Date: 2026-12-01"
+        android:fontFamily="@font/light_main_text_font"/>
+    <TextView
+        android:id="@+id/tv_item_arrival_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arrived Date: 2026-12-01"
+        android:fontFamily="@font/light_main_text_font"/>
+
+</LinearLayout>

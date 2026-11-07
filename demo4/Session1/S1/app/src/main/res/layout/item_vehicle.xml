@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_linearlayout"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Vehicle photo + texts: takes all the width left by the right column -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_item_vehicle_photo"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/no_picture" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_item_vehicle_plate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold_title_button_font"
+                    android:text="YEG967"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tv_item_vehicle_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/light_main_text_font"
+                    android:text="11m*3m" />
+
+                <TextView
+                    android:id="@+id/tv_item_vehicle_capacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/light_main_text_font"
+                    android:text="14 ton" />
+
+            </LinearLayout>
+
+
+            <!-- Red rounded label, shown only when the authorization has expired -->
+            <TextView
+                android:id="@+id/tv_item_vehicle_expired"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_badge_red"
+                android:fontFamily="@font/bold_title_button_font"
+                android:layout_gravity="right"
+                android:text="Expired"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:textSize="11sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_item_vehicle_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/light_main_text_font"
+            android:text="Authorization Start Date: 2026-10-16" />
+
+        <TextView
+            android:id="@+id/tv_item_vehicle_expired_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/light_main_text_font"
+            android:text="Authorization Date: 2026-10-31" />
+
+    </LinearLayout>
+
+    <!-- Right column: Expired signal (expired vehicles only) + Reauthorize button (every vehicle) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <!-- Reauthorize: opens the popup to update the expired date -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_item_vehicle_reauthorize"
+            android:layout_width="104dp"
+            android:layout_height="34dp"
+            android:background="@drawable/bg_button_blue"
+            android:fontFamily="@font/bold_title_button_font"
+            android:text="Reauthorize"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

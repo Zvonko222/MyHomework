@@ -1,0 +1,1589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="S2DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cargo_owner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rating_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargo_owner_rating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rating" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="container">
+          <Key>
+            <PropertyRef Name="container_number" />
+          </Key>
+          <Property Name="container_number" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="voyage_number" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="container_type_id" Type="int" Nullable="false" />
+          <Property Name="cargo_owner_id" Type="int" Nullable="false" />
+          <Property Name="purchase_price" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="container_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_code" />
+          </Key>
+          <Property Name="country_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="duty_rate" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customs_officer">
+          <Key>
+            <PropertyRef Name="job_number" />
+          </Key>
+          <Property Name="job_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="declaration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="declaration_status_id" Type="int" Nullable="false" />
+          <Property Name="container_number" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="hs_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="country_of_origin" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="trade_mode" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="unit_id" Type="int" Nullable="false" />
+          <Property Name="cargo_amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="duty_payable" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="declaration_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="declaration_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="declaration_status_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="declaration_id" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="declaration_status_id" Type="int" Nullable="false" />
+          <Property Name="change_time" Type="datetime" Nullable="false" />
+          <Property Name="reason" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="exception_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="harmonized_system">
+          <Key>
+            <PropertyRef Name="hs_code" />
+          </Key>
+          <Property Name="hs_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="hs_description" Type="varchar(max)" Nullable="false" />
+          <Property Name="is_duty_free" Type="bit" Nullable="false" />
+          <Property Name="duty_rate" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="risk_grade" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="port">
+          <Key>
+            <PropertyRef Name="port_code" />
+          </Key>
+          <Property Name="port_code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="country_code" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sc_status_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="security_check_id" Type="int" Nullable="false" />
+          <Property Name="sc_status_id" Type="int" Nullable="false" />
+          <Property Name="change_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="security_check">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="container_number" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="check_time" Type="datetime" Nullable="false" />
+          <Property Name="inspector" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="current_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="security_check_exception">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="security_check_id" Type="int" Nullable="false" />
+          <Property Name="exception_type_id" Type="int" Nullable="false" />
+          <Property Name="detail" Type="varchar" MaxLength="200" />
+          <Property Name="inspector" Type="varchar" MaxLength="50" />
+          <Property Name="submit_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="security_check_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trade_mode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="duty_rate" Type="decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="voyage">
+          <Key>
+            <PropertyRef Name="voyage_number" />
+          </Key>
+          <Property Name="voyage_number" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="departure_port" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="destination_port" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="departure_time" Type="datetime" Nullable="false" />
+          <Property Name="estimated_arrival_time" Type="datetime" Nullable="false" />
+          <Property Name="actual_arrival_time" Type="datetime" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="voyage_arrival_time_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="voyage_number" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estimated_arrival_time" Type="datetime" Nullable="false" />
+          <Property Name="change_time" Type="datetime" Nullable="false" />
+          <Property Name="reason" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="voyage_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="cargo_owner_cargo_owner_rating_id_fk">
+          <End Role="cargo_owner_rating" Type="Self.cargo_owner_rating" Multiplicity="1" />
+          <End Role="cargo_owner" Type="Self.cargo_owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargo_owner_rating">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cargo_owner">
+              <PropertyRef Name="rating_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="container_cargo_owner_id_fk">
+          <End Role="cargo_owner" Type="Self.cargo_owner" Multiplicity="1" />
+          <End Role="container" Type="Self.container" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargo_owner">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="container">
+              <PropertyRef Name="cargo_owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="container_container_type_id_fk">
+          <End Role="container_type" Type="Self.container_type" Multiplicity="1" />
+          <End Role="container" Type="Self.container" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="container_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="container">
+              <PropertyRef Name="container_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="container_voyage_voyage_number_fk">
+          <End Role="voyage" Type="Self.voyage" Multiplicity="1" />
+          <End Role="container" Type="Self.container" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voyage">
+              <PropertyRef Name="voyage_number" />
+            </Principal>
+            <Dependent Role="container">
+              <PropertyRef Name="voyage_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customs_officer_role_id_fk">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="customs_officer" Type="Self.customs_officer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customs_officer">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_container_container_no_fk">
+          <End Role="container" Type="Self.container" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="container">
+              <PropertyRef Name="container_number" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="container_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_declaration_status_id_fk">
+          <End Role="declaration_status" Type="Self.declaration_status" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="declaration_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="declaration_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_status_change_declaration_id_fk">
+          <End Role="declaration" Type="Self.declaration" Multiplicity="1" />
+          <End Role="declaration_status_change" Type="Self.declaration_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="declaration">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration_status_change">
+              <PropertyRef Name="declaration_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_status_change_declaration_status_id_fk">
+          <End Role="declaration_status" Type="Self.declaration_status" Multiplicity="1" />
+          <End Role="declaration_status_change" Type="Self.declaration_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="declaration_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration_status_change">
+              <PropertyRef Name="declaration_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_trade_mode_id_fk">
+          <End Role="trade_mode" Type="Self.trade_mode" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trade_mode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="trade_mode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_unit_id_fk">
+          <End Role="unit" Type="Self.unit" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_declaration_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_code" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="country_of_origin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_declaration_harmonized_system">
+          <End Role="harmonized_system" Type="Self.harmonized_system" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="harmonized_system">
+              <PropertyRef Name="hs_code" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="hs_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_port_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="port" Type="Self.port" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_code" />
+            </Principal>
+            <Dependent Role="port">
+              <PropertyRef Name="country_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_voyage_port_departure">
+          <End Role="port" Type="Self.port" Multiplicity="1" />
+          <End Role="voyage" Type="Self.voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="port">
+              <PropertyRef Name="port_code" />
+            </Principal>
+            <Dependent Role="voyage">
+              <PropertyRef Name="departure_port" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_voyage_port_destination">
+          <End Role="port" Type="Self.port" Multiplicity="1" />
+          <End Role="voyage" Type="Self.voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="port">
+              <PropertyRef Name="port_code" />
+            </Principal>
+            <Dependent Role="voyage">
+              <PropertyRef Name="destination_port" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_exception_exception_type_id_fk">
+          <End Role="exception_type" Type="Self.exception_type" Multiplicity="1" />
+          <End Role="security_check_exception" Type="Self.security_check_exception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exception_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="security_check_exception">
+              <PropertyRef Name="exception_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_exception_security_check_id_fk">
+          <End Role="security_check" Type="Self.security_check" Multiplicity="1" />
+          <End Role="security_check_exception" Type="Self.security_check_exception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="security_check_exception">
+              <PropertyRef Name="security_check_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_status_change_security_check_id_fk">
+          <End Role="security_check" Type="Self.security_check" Multiplicity="1" />
+          <End Role="sc_status_change" Type="Self.sc_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sc_status_change">
+              <PropertyRef Name="security_check_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_status_change_security_check_status_id_fk">
+          <End Role="security_check_status" Type="Self.security_check_status" Multiplicity="1" />
+          <End Role="sc_status_change" Type="Self.sc_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sc_status_change">
+              <PropertyRef Name="sc_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_container_container_no_fk">
+          <End Role="container" Type="Self.container" Multiplicity="1" />
+          <End Role="security_check" Type="Self.security_check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="container">
+              <PropertyRef Name="container_number" />
+            </Principal>
+            <Dependent Role="security_check">
+              <PropertyRef Name="container_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_customs_officer_job_number_fk">
+          <End Role="customs_officer" Type="Self.customs_officer" Multiplicity="1" />
+          <End Role="security_check" Type="Self.security_check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customs_officer">
+              <PropertyRef Name="job_number" />
+            </Principal>
+            <Dependent Role="security_check">
+              <PropertyRef Name="inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_exception_customs_officer_job_number_fk">
+          <End Role="customs_officer" Type="Self.customs_officer" Multiplicity="0..1" />
+          <End Role="security_check_exception" Type="Self.security_check_exception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customs_officer">
+              <PropertyRef Name="job_number" />
+            </Principal>
+            <Dependent Role="security_check_exception">
+              <PropertyRef Name="inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_security_check_status_id_fk">
+          <End Role="security_check_status" Type="Self.security_check_status" Multiplicity="1" />
+          <End Role="security_check" Type="Self.security_check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="security_check">
+              <PropertyRef Name="current_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voyage_arrival_time_change_voyage_voyage_number_fk">
+          <End Role="voyage" Type="Self.voyage" Multiplicity="1" />
+          <End Role="voyage_arrival_time_change" Type="Self.voyage_arrival_time_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voyage">
+              <PropertyRef Name="voyage_number" />
+            </Principal>
+            <Dependent Role="voyage_arrival_time_change">
+              <PropertyRef Name="voyage_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voyage_voyage_status_id_fk">
+          <End Role="voyage_status" Type="Self.voyage_status" Multiplicity="1" />
+          <End Role="voyage" Type="Self.voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voyage_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="voyage">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="S2DBModelStoreContainer">
+          <EntitySet Name="cargo_owner" EntityType="Self.cargo_owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cargo_owner_rating" EntityType="Self.cargo_owner_rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="container" EntityType="Self.container" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="container_type" EntityType="Self.container_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customs_officer" EntityType="Self.customs_officer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="declaration" EntityType="Self.declaration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="declaration_status" EntityType="Self.declaration_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="declaration_status_change" EntityType="Self.declaration_status_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="exception_type" EntityType="Self.exception_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="harmonized_system" EntityType="Self.harmonized_system" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="port" EntityType="Self.port" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_status_change" EntityType="Self.sc_status_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="security_check" EntityType="Self.security_check" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="security_check_exception" EntityType="Self.security_check_exception" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="security_check_status" EntityType="Self.security_check_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trade_mode" EntityType="Self.trade_mode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="unit" EntityType="Self.unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="voyage" EntityType="Self.voyage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="voyage_arrival_time_change" EntityType="Self.voyage_arrival_time_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="voyage_status" EntityType="Self.voyage_status" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="cargo_owner_cargo_owner_rating_id_fk" Association="Self.cargo_owner_cargo_owner_rating_id_fk">
+            <End Role="cargo_owner_rating" EntitySet="cargo_owner_rating" />
+            <End Role="cargo_owner" EntitySet="cargo_owner" />
+          </AssociationSet>
+          <AssociationSet Name="container_cargo_owner_id_fk" Association="Self.container_cargo_owner_id_fk">
+            <End Role="cargo_owner" EntitySet="cargo_owner" />
+            <End Role="container" EntitySet="container" />
+          </AssociationSet>
+          <AssociationSet Name="container_container_type_id_fk" Association="Self.container_container_type_id_fk">
+            <End Role="container_type" EntitySet="container_type" />
+            <End Role="container" EntitySet="container" />
+          </AssociationSet>
+          <AssociationSet Name="container_voyage_voyage_number_fk" Association="Self.container_voyage_voyage_number_fk">
+            <End Role="voyage" EntitySet="voyage" />
+            <End Role="container" EntitySet="container" />
+          </AssociationSet>
+          <AssociationSet Name="customs_officer_role_id_fk" Association="Self.customs_officer_role_id_fk">
+            <End Role="role" EntitySet="role" />
+            <End Role="customs_officer" EntitySet="customs_officer" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_container_container_no_fk" Association="Self.declaration_container_container_no_fk">
+            <End Role="container" EntitySet="container" />
+            <End Role="declaration" EntitySet="declaration" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_declaration_status_id_fk" Association="Self.declaration_declaration_status_id_fk">
+            <End Role="declaration_status" EntitySet="declaration_status" />
+            <End Role="declaration" EntitySet="declaration" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_status_change_declaration_id_fk" Association="Self.declaration_status_change_declaration_id_fk">
+            <End Role="declaration" EntitySet="declaration" />
+            <End Role="declaration_status_change" EntitySet="declaration_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_status_change_declaration_status_id_fk" Association="Self.declaration_status_change_declaration_status_id_fk">
+            <End Role="declaration_status" EntitySet="declaration_status" />
+            <End Role="declaration_status_change" EntitySet="declaration_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_trade_mode_id_fk" Association="Self.declaration_trade_mode_id_fk">
+            <End Role="trade_mode" EntitySet="trade_mode" />
+            <End Role="declaration" EntitySet="declaration" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_unit_id_fk" Association="Self.declaration_unit_id_fk">
+            <End Role="unit" EntitySet="unit" />
+            <End Role="declaration" EntitySet="declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_declaration_country" Association="Self.FK_declaration_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="declaration" EntitySet="declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_declaration_harmonized_system" Association="Self.FK_declaration_harmonized_system">
+            <End Role="harmonized_system" EntitySet="harmonized_system" />
+            <End Role="declaration" EntitySet="declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_port_country" Association="Self.FK_port_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="port" EntitySet="port" />
+          </AssociationSet>
+          <AssociationSet Name="FK_voyage_port_departure" Association="Self.FK_voyage_port_departure">
+            <End Role="port" EntitySet="port" />
+            <End Role="voyage" EntitySet="voyage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_voyage_port_destination" Association="Self.FK_voyage_port_destination">
+            <End Role="port" EntitySet="port" />
+            <End Role="voyage" EntitySet="voyage" />
+          </AssociationSet>
+          <AssociationSet Name="sc_exception_exception_type_id_fk" Association="Self.sc_exception_exception_type_id_fk">
+            <End Role="exception_type" EntitySet="exception_type" />
+            <End Role="security_check_exception" EntitySet="security_check_exception" />
+          </AssociationSet>
+          <AssociationSet Name="sc_exception_security_check_id_fk" Association="Self.sc_exception_security_check_id_fk">
+            <End Role="security_check" EntitySet="security_check" />
+            <End Role="security_check_exception" EntitySet="security_check_exception" />
+          </AssociationSet>
+          <AssociationSet Name="sc_status_change_security_check_id_fk" Association="Self.sc_status_change_security_check_id_fk">
+            <End Role="security_check" EntitySet="security_check" />
+            <End Role="sc_status_change" EntitySet="sc_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="sc_status_change_security_check_status_id_fk" Association="Self.sc_status_change_security_check_status_id_fk">
+            <End Role="security_check_status" EntitySet="security_check_status" />
+            <End Role="sc_status_change" EntitySet="sc_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_container_container_no_fk" Association="Self.security_check_container_container_no_fk">
+            <End Role="container" EntitySet="container" />
+            <End Role="security_check" EntitySet="security_check" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_customs_officer_job_number_fk" Association="Self.security_check_customs_officer_job_number_fk">
+            <End Role="customs_officer" EntitySet="customs_officer" />
+            <End Role="security_check" EntitySet="security_check" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_exception_customs_officer_job_number_fk" Association="Self.security_check_exception_customs_officer_job_number_fk">
+            <End Role="customs_officer" EntitySet="customs_officer" />
+            <End Role="security_check_exception" EntitySet="security_check_exception" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_security_check_status_id_fk" Association="Self.security_check_security_check_status_id_fk">
+            <End Role="security_check_status" EntitySet="security_check_status" />
+            <End Role="security_check" EntitySet="security_check" />
+          </AssociationSet>
+          <AssociationSet Name="voyage_arrival_time_change_voyage_voyage_number_fk" Association="Self.voyage_arrival_time_change_voyage_voyage_number_fk">
+            <End Role="voyage" EntitySet="voyage" />
+            <End Role="voyage_arrival_time_change" EntitySet="voyage_arrival_time_change" />
+          </AssociationSet>
+          <AssociationSet Name="voyage_voyage_status_id_fk" Association="Self.voyage_voyage_status_id_fk">
+            <End Role="voyage_status" EntitySet="voyage_status" />
+            <End Role="voyage" EntitySet="voyage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="S2DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cargo_owner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rating_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cargo_owner_rating" Relationship="Self.cargo_owner_cargo_owner_rating_id_fk" FromRole="cargo_owner" ToRole="cargo_owner_rating" />
+          <NavigationProperty Name="containers" Relationship="S2DBModel.container_cargo_owner_id_fk" FromRole="cargo_owner" ToRole="container" />
+        </EntityType>
+        <EntityType Name="cargo_owner_rating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cargo_owner" Relationship="Self.cargo_owner_cargo_owner_rating_id_fk" FromRole="cargo_owner_rating" ToRole="cargo_owner" />
+        </EntityType>
+        <EntityType Name="container">
+          <Key>
+            <PropertyRef Name="container_number" />
+          </Key>
+          <Property Name="container_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="voyage_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="container_type_id" Type="Int32" Nullable="false" />
+          <Property Name="cargo_owner_id" Type="Int32" Nullable="false" />
+          <Property Name="purchase_price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="container_type" Relationship="Self.container_container_type_id_fk" FromRole="container" ToRole="container_type" />
+          <NavigationProperty Name="voyage" Relationship="Self.container_voyage_voyage_number_fk" FromRole="container" ToRole="voyage" />
+          <NavigationProperty Name="declarations" Relationship="Self.declaration_container_container_no_fk" FromRole="container" ToRole="declaration" />
+          <NavigationProperty Name="security_check" Relationship="Self.security_check_container_container_no_fk" FromRole="container" ToRole="security_check" />
+          <NavigationProperty Name="cargo_owner" Relationship="S2DBModel.container_cargo_owner_id_fk" FromRole="container" ToRole="cargo_owner" />
+        </EntityType>
+        <EntityType Name="container_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="containers" Relationship="Self.container_container_type_id_fk" FromRole="container_type" ToRole="container" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="country_code" />
+          </Key>
+          <Property Name="country_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duty_rate" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <NavigationProperty Name="declarations" Relationship="Self.FK_declaration_country" FromRole="country" ToRole="declaration" />
+          <NavigationProperty Name="ports" Relationship="Self.FK_port_country" FromRole="country" ToRole="port" />
+        </EntityType>
+        <EntityType Name="customs_officer">
+          <Key>
+            <PropertyRef Name="job_number" />
+          </Key>
+          <Property Name="job_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="role" Relationship="Self.customs_officer_role_id_fk" FromRole="customs_officer" ToRole="role" />
+          <NavigationProperty Name="security_check" Relationship="Self.security_check_customs_officer_job_number_fk" FromRole="customs_officer" ToRole="security_check" />
+          <NavigationProperty Name="security_check_exception" Relationship="Self.security_check_exception_customs_officer_job_number_fk" FromRole="customs_officer" ToRole="security_check_exception" />
+        </EntityType>
+        <EntityType Name="declaration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="declaration_status_id" Type="Int32" Nullable="false" />
+          <Property Name="container_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hs_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country_of_origin" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="trade_mode" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="unit_id" Type="Int32" Nullable="false" />
+          <Property Name="cargo_amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="duty_payable" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="declaration_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="container" Relationship="Self.declaration_container_container_no_fk" FromRole="declaration" ToRole="container" />
+          <NavigationProperty Name="country" Relationship="Self.FK_declaration_country" FromRole="declaration" ToRole="country" />
+          <NavigationProperty Name="declaration_status" Relationship="Self.declaration_declaration_status_id_fk" FromRole="declaration" ToRole="declaration_status" />
+          <NavigationProperty Name="declaration_status_change" Relationship="Self.declaration_status_change_declaration_id_fk" FromRole="declaration" ToRole="declaration_status_change" />
+          <NavigationProperty Name="trade_mode1" Relationship="Self.declaration_trade_mode_id_fk" FromRole="declaration" ToRole="trade_mode" />
+          <NavigationProperty Name="unit" Relationship="Self.declaration_unit_id_fk" FromRole="declaration" ToRole="unit" />
+          <NavigationProperty Name="harmonized_system" Relationship="Self.FK_declaration_harmonized_system" FromRole="declaration" ToRole="harmonized_system" />
+        </EntityType>
+        <EntityType Name="declaration_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="declarations" Relationship="Self.declaration_declaration_status_id_fk" FromRole="declaration_status" ToRole="declaration" />
+          <NavigationProperty Name="declaration_status_change" Relationship="Self.declaration_status_change_declaration_status_id_fk" FromRole="declaration_status" ToRole="declaration_status_change" />
+        </EntityType>
+        <EntityType Name="declaration_status_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="declaration_id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="declaration_status_id" Type="Int32" Nullable="false" />
+          <Property Name="change_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="declaration" Relationship="Self.declaration_status_change_declaration_id_fk" FromRole="declaration_status_change" ToRole="declaration" />
+          <NavigationProperty Name="declaration_status" Relationship="Self.declaration_status_change_declaration_status_id_fk" FromRole="declaration_status_change" ToRole="declaration_status" />
+        </EntityType>
+        <EntityType Name="exception_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="security_check_exception" Relationship="Self.sc_exception_exception_type_id_fk" FromRole="exception_type" ToRole="security_check_exception" />
+        </EntityType>
+        <EntityType Name="harmonized_system">
+          <Key>
+            <PropertyRef Name="hs_code" />
+          </Key>
+          <Property Name="hs_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hs_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_duty_free" Type="Boolean" Nullable="false" />
+          <Property Name="duty_rate" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="risk_grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="declarations" Relationship="Self.FK_declaration_harmonized_system" FromRole="harmonized_system" ToRole="declaration" />
+        </EntityType>
+        <EntityType Name="port">
+          <Key>
+            <PropertyRef Name="port_code" />
+          </Key>
+          <Property Name="port_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.FK_port_country" FromRole="port" ToRole="country" />
+          <NavigationProperty Name="voyages" Relationship="Self.FK_voyage_port_departure" FromRole="port" ToRole="voyage" />
+          <NavigationProperty Name="voyages1" Relationship="Self.FK_voyage_port_destination" FromRole="port" ToRole="voyage" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="customs_officer" Relationship="Self.customs_officer_role_id_fk" FromRole="role" ToRole="customs_officer" />
+        </EntityType>
+        <EntityType Name="sc_status_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="security_check_id" Type="Int32" Nullable="false" />
+          <Property Name="sc_status_id" Type="Int32" Nullable="false" />
+          <Property Name="change_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="security_check" Relationship="Self.sc_status_change_security_check_id_fk" FromRole="sc_status_change" ToRole="security_check" />
+          <NavigationProperty Name="security_check_status" Relationship="Self.sc_status_change_security_check_status_id_fk" FromRole="sc_status_change" ToRole="security_check_status" />
+        </EntityType>
+        <EntityType Name="security_check">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="container_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="check_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="inspector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="current_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="container" Relationship="Self.security_check_container_container_no_fk" FromRole="security_check" ToRole="container" />
+          <NavigationProperty Name="customs_officer" Relationship="Self.security_check_customs_officer_job_number_fk" FromRole="security_check" ToRole="customs_officer" />
+          <NavigationProperty Name="sc_status_change" Relationship="Self.sc_status_change_security_check_id_fk" FromRole="security_check" ToRole="sc_status_change" />
+          <NavigationProperty Name="security_check_exception" Relationship="Self.sc_exception_security_check_id_fk" FromRole="security_check" ToRole="security_check_exception" />
+          <NavigationProperty Name="security_check_status" Relationship="Self.security_check_security_check_status_id_fk" FromRole="security_check" ToRole="security_check_status" />
+        </EntityType>
+        <EntityType Name="security_check_exception">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="security_check_id" Type="Int32" Nullable="false" />
+          <Property Name="exception_type_id" Type="Int32" Nullable="false" />
+          <Property Name="detail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="inspector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="submit_time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="customs_officer" Relationship="Self.security_check_exception_customs_officer_job_number_fk" FromRole="security_check_exception" ToRole="customs_officer" />
+          <NavigationProperty Name="exception_type" Relationship="Self.sc_exception_exception_type_id_fk" FromRole="security_check_exception" ToRole="exception_type" />
+          <NavigationProperty Name="security_check" Relationship="Self.sc_exception_security_check_id_fk" FromRole="security_check_exception" ToRole="security_check" />
+        </EntityType>
+        <EntityType Name="security_check_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="sc_status_change" Relationship="Self.sc_status_change_security_check_status_id_fk" FromRole="security_check_status" ToRole="sc_status_change" />
+          <NavigationProperty Name="security_check" Relationship="Self.security_check_security_check_status_id_fk" FromRole="security_check_status" ToRole="security_check" />
+        </EntityType>
+        <EntityType Name="trade_mode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duty_rate" Type="Decimal" Precision="10" Scale="4" />
+          <NavigationProperty Name="declarations" Relationship="Self.declaration_trade_mode_id_fk" FromRole="trade_mode" ToRole="declaration" />
+        </EntityType>
+        <EntityType Name="unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="declarations" Relationship="Self.declaration_unit_id_fk" FromRole="unit" ToRole="declaration" />
+        </EntityType>
+        <EntityType Name="voyage">
+          <Key>
+            <PropertyRef Name="voyage_number" />
+          </Key>
+          <Property Name="voyage_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="departure_port" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="destination_port" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="departure_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estimated_arrival_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="actual_arrival_time" Type="DateTime" Precision="3" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="containers" Relationship="Self.container_voyage_voyage_number_fk" FromRole="voyage" ToRole="container" />
+          <NavigationProperty Name="port" Relationship="Self.FK_voyage_port_departure" FromRole="voyage" ToRole="port" />
+          <NavigationProperty Name="port1" Relationship="Self.FK_voyage_port_destination" FromRole="voyage" ToRole="port" />
+          <NavigationProperty Name="voyage_arrival_time_change" Relationship="Self.voyage_arrival_time_change_voyage_voyage_number_fk" FromRole="voyage" ToRole="voyage_arrival_time_change" />
+          <NavigationProperty Name="voyage_status" Relationship="Self.voyage_voyage_status_id_fk" FromRole="voyage" ToRole="voyage_status" />
+        </EntityType>
+        <EntityType Name="voyage_arrival_time_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="voyage_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estimated_arrival_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="change_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="voyage" Relationship="Self.voyage_arrival_time_change_voyage_voyage_number_fk" FromRole="voyage_arrival_time_change" ToRole="voyage" />
+        </EntityType>
+        <EntityType Name="voyage_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="voyages" Relationship="Self.voyage_voyage_status_id_fk" FromRole="voyage_status" ToRole="voyage" />
+        </EntityType>
+        <Association Name="cargo_owner_cargo_owner_rating_id_fk">
+          <End Role="cargo_owner_rating" Type="Self.cargo_owner_rating" Multiplicity="1" />
+          <End Role="cargo_owner" Type="Self.cargo_owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargo_owner_rating">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cargo_owner">
+              <PropertyRef Name="rating_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="container_container_type_id_fk">
+          <End Role="container_type" Type="Self.container_type" Multiplicity="1" />
+          <End Role="container" Type="Self.container" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="container_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="container">
+              <PropertyRef Name="container_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="container_voyage_voyage_number_fk">
+          <End Role="voyage" Type="Self.voyage" Multiplicity="1" />
+          <End Role="container" Type="Self.container" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voyage">
+              <PropertyRef Name="voyage_number" />
+            </Principal>
+            <Dependent Role="container">
+              <PropertyRef Name="voyage_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_container_container_no_fk">
+          <End Role="container" Type="Self.container" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="container">
+              <PropertyRef Name="container_number" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="container_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_container_container_no_fk">
+          <End Role="container" Type="Self.container" Multiplicity="1" />
+          <End Role="security_check" Type="Self.security_check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="container">
+              <PropertyRef Name="container_number" />
+            </Principal>
+            <Dependent Role="security_check">
+              <PropertyRef Name="container_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_declaration_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_code" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="country_of_origin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_port_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="port" Type="Self.port" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="country_code" />
+            </Principal>
+            <Dependent Role="port">
+              <PropertyRef Name="country_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customs_officer_role_id_fk">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="customs_officer" Type="Self.customs_officer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customs_officer">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_customs_officer_job_number_fk">
+          <End Role="customs_officer" Type="Self.customs_officer" Multiplicity="1" />
+          <End Role="security_check" Type="Self.security_check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customs_officer">
+              <PropertyRef Name="job_number" />
+            </Principal>
+            <Dependent Role="security_check">
+              <PropertyRef Name="inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_exception_customs_officer_job_number_fk">
+          <End Role="customs_officer" Type="Self.customs_officer" Multiplicity="0..1" />
+          <End Role="security_check_exception" Type="Self.security_check_exception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customs_officer">
+              <PropertyRef Name="job_number" />
+            </Principal>
+            <Dependent Role="security_check_exception">
+              <PropertyRef Name="inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_declaration_status_id_fk">
+          <End Role="declaration_status" Type="Self.declaration_status" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="declaration_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="declaration_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_status_change_declaration_id_fk">
+          <End Role="declaration" Type="Self.declaration" Multiplicity="1" />
+          <End Role="declaration_status_change" Type="Self.declaration_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="declaration">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration_status_change">
+              <PropertyRef Name="declaration_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_trade_mode_id_fk">
+          <End Role="trade_mode" Type="Self.trade_mode" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trade_mode">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="trade_mode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_unit_id_fk">
+          <End Role="unit" Type="Self.unit" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_declaration_harmonized_system">
+          <End Role="harmonized_system" Type="Self.harmonized_system" Multiplicity="1" />
+          <End Role="declaration" Type="Self.declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="harmonized_system">
+              <PropertyRef Name="hs_code" />
+            </Principal>
+            <Dependent Role="declaration">
+              <PropertyRef Name="hs_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="declaration_status_change_declaration_status_id_fk">
+          <End Role="declaration_status" Type="Self.declaration_status" Multiplicity="1" />
+          <End Role="declaration_status_change" Type="Self.declaration_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="declaration_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="declaration_status_change">
+              <PropertyRef Name="declaration_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_exception_exception_type_id_fk">
+          <End Role="exception_type" Type="Self.exception_type" Multiplicity="1" />
+          <End Role="security_check_exception" Type="Self.security_check_exception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exception_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="security_check_exception">
+              <PropertyRef Name="exception_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_voyage_port_departure">
+          <End Role="port" Type="Self.port" Multiplicity="1" />
+          <End Role="voyage" Type="Self.voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="port">
+              <PropertyRef Name="port_code" />
+            </Principal>
+            <Dependent Role="voyage">
+              <PropertyRef Name="departure_port" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_voyage_port_destination">
+          <End Role="port" Type="Self.port" Multiplicity="1" />
+          <End Role="voyage" Type="Self.voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="port">
+              <PropertyRef Name="port_code" />
+            </Principal>
+            <Dependent Role="voyage">
+              <PropertyRef Name="destination_port" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_status_change_security_check_id_fk">
+          <End Role="security_check" Type="Self.security_check" Multiplicity="1" />
+          <End Role="sc_status_change" Type="Self.sc_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sc_status_change">
+              <PropertyRef Name="security_check_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_status_change_security_check_status_id_fk">
+          <End Role="security_check_status" Type="Self.security_check_status" Multiplicity="1" />
+          <End Role="sc_status_change" Type="Self.sc_status_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sc_status_change">
+              <PropertyRef Name="sc_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sc_exception_security_check_id_fk">
+          <End Role="security_check" Type="Self.security_check" Multiplicity="1" />
+          <End Role="security_check_exception" Type="Self.security_check_exception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="security_check_exception">
+              <PropertyRef Name="security_check_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="security_check_security_check_status_id_fk">
+          <End Role="security_check_status" Type="Self.security_check_status" Multiplicity="1" />
+          <End Role="security_check" Type="Self.security_check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="security_check_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="security_check">
+              <PropertyRef Name="current_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voyage_arrival_time_change_voyage_voyage_number_fk">
+          <End Role="voyage" Type="Self.voyage" Multiplicity="1" />
+          <End Role="voyage_arrival_time_change" Type="Self.voyage_arrival_time_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voyage">
+              <PropertyRef Name="voyage_number" />
+            </Principal>
+            <Dependent Role="voyage_arrival_time_change">
+              <PropertyRef Name="voyage_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voyage_voyage_status_id_fk">
+          <End Role="voyage_status" Type="Self.voyage_status" Multiplicity="1" />
+          <End Role="voyage" Type="Self.voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voyage_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="voyage">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="S2DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cargo_owner" EntityType="Self.cargo_owner" />
+          <EntitySet Name="cargo_owner_rating" EntityType="Self.cargo_owner_rating" />
+          <EntitySet Name="containers" EntityType="Self.container" />
+          <EntitySet Name="container_type" EntityType="Self.container_type" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="customs_officer" EntityType="Self.customs_officer" />
+          <EntitySet Name="declarations" EntityType="Self.declaration" />
+          <EntitySet Name="declaration_status" EntityType="Self.declaration_status" />
+          <EntitySet Name="declaration_status_change" EntityType="Self.declaration_status_change" />
+          <EntitySet Name="exception_type" EntityType="Self.exception_type" />
+          <EntitySet Name="harmonized_system" EntityType="Self.harmonized_system" />
+          <EntitySet Name="ports" EntityType="Self.port" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="sc_status_change" EntityType="Self.sc_status_change" />
+          <EntitySet Name="security_check" EntityType="Self.security_check" />
+          <EntitySet Name="security_check_exception" EntityType="Self.security_check_exception" />
+          <EntitySet Name="security_check_status" EntityType="Self.security_check_status" />
+          <EntitySet Name="trade_mode" EntityType="Self.trade_mode" />
+          <EntitySet Name="units" EntityType="Self.unit" />
+          <EntitySet Name="voyages" EntityType="Self.voyage" />
+          <EntitySet Name="voyage_arrival_time_change" EntityType="Self.voyage_arrival_time_change" />
+          <EntitySet Name="voyage_status" EntityType="Self.voyage_status" />
+          <AssociationSet Name="cargo_owner_cargo_owner_rating_id_fk" Association="Self.cargo_owner_cargo_owner_rating_id_fk">
+            <End Role="cargo_owner_rating" EntitySet="cargo_owner_rating" />
+            <End Role="cargo_owner" EntitySet="cargo_owner" />
+          </AssociationSet>
+          <AssociationSet Name="container_container_type_id_fk" Association="Self.container_container_type_id_fk">
+            <End Role="container_type" EntitySet="container_type" />
+            <End Role="container" EntitySet="containers" />
+          </AssociationSet>
+          <AssociationSet Name="container_voyage_voyage_number_fk" Association="Self.container_voyage_voyage_number_fk">
+            <End Role="voyage" EntitySet="voyages" />
+            <End Role="container" EntitySet="containers" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_container_container_no_fk" Association="Self.declaration_container_container_no_fk">
+            <End Role="container" EntitySet="containers" />
+            <End Role="declaration" EntitySet="declarations" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_container_container_no_fk" Association="Self.security_check_container_container_no_fk">
+            <End Role="container" EntitySet="containers" />
+            <End Role="security_check" EntitySet="security_check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_declaration_country" Association="Self.FK_declaration_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="declaration" EntitySet="declarations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_port_country" Association="Self.FK_port_country">
+            <End Role="country" EntitySet="countries" />
+            <End Role="port" EntitySet="ports" />
+          </AssociationSet>
+          <AssociationSet Name="customs_officer_role_id_fk" Association="Self.customs_officer_role_id_fk">
+            <End Role="role" EntitySet="roles" />
+            <End Role="customs_officer" EntitySet="customs_officer" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_customs_officer_job_number_fk" Association="Self.security_check_customs_officer_job_number_fk">
+            <End Role="customs_officer" EntitySet="customs_officer" />
+            <End Role="security_check" EntitySet="security_check" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_exception_customs_officer_job_number_fk" Association="Self.security_check_exception_customs_officer_job_number_fk">
+            <End Role="customs_officer" EntitySet="customs_officer" />
+            <End Role="security_check_exception" EntitySet="security_check_exception" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_declaration_status_id_fk" Association="Self.declaration_declaration_status_id_fk">
+            <End Role="declaration_status" EntitySet="declaration_status" />
+            <End Role="declaration" EntitySet="declarations" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_status_change_declaration_id_fk" Association="Self.declaration_status_change_declaration_id_fk">
+            <End Role="declaration" EntitySet="declarations" />
+            <End Role="declaration_status_change" EntitySet="declaration_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_trade_mode_id_fk" Association="Self.declaration_trade_mode_id_fk">
+            <End Role="trade_mode" EntitySet="trade_mode" />
+            <End Role="declaration" EntitySet="declarations" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_unit_id_fk" Association="Self.declaration_unit_id_fk">
+            <End Role="unit" EntitySet="units" />
+            <End Role="declaration" EntitySet="declarations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_declaration_harmonized_system" Association="Self.FK_declaration_harmonized_system">
+            <End Role="harmonized_system" EntitySet="harmonized_system" />
+            <End Role="declaration" EntitySet="declarations" />
+          </AssociationSet>
+          <AssociationSet Name="declaration_status_change_declaration_status_id_fk" Association="Self.declaration_status_change_declaration_status_id_fk">
+            <End Role="declaration_status" EntitySet="declaration_status" />
+            <End Role="declaration_status_change" EntitySet="declaration_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="sc_exception_exception_type_id_fk" Association="Self.sc_exception_exception_type_id_fk">
+            <End Role="exception_type" EntitySet="exception_type" />
+            <End Role="security_check_exception" EntitySet="security_check_exception" />
+          </AssociationSet>
+          <AssociationSet Name="FK_voyage_port_departure" Association="Self.FK_voyage_port_departure">
+            <End Role="port" EntitySet="ports" />
+            <End Role="voyage" EntitySet="voyages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_voyage_port_destination" Association="Self.FK_voyage_port_destination">
+            <End Role="port" EntitySet="ports" />
+            <End Role="voyage" EntitySet="voyages" />
+          </AssociationSet>
+          <AssociationSet Name="sc_status_change_security_check_id_fk" Association="Self.sc_status_change_security_check_id_fk">
+            <End Role="security_check" EntitySet="security_check" />
+            <End Role="sc_status_change" EntitySet="sc_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="sc_status_change_security_check_status_id_fk" Association="Self.sc_status_change_security_check_status_id_fk">
+            <End Role="security_check_status" EntitySet="security_check_status" />
+            <End Role="sc_status_change" EntitySet="sc_status_change" />
+          </AssociationSet>
+          <AssociationSet Name="sc_exception_security_check_id_fk" Association="Self.sc_exception_security_check_id_fk">
+            <End Role="security_check" EntitySet="security_check" />
+            <End Role="security_check_exception" EntitySet="security_check_exception" />
+          </AssociationSet>
+          <AssociationSet Name="security_check_security_check_status_id_fk" Association="Self.security_check_security_check_status_id_fk">
+            <End Role="security_check_status" EntitySet="security_check_status" />
+            <End Role="security_check" EntitySet="security_check" />
+          </AssociationSet>
+          <AssociationSet Name="voyage_arrival_time_change_voyage_voyage_number_fk" Association="Self.voyage_arrival_time_change_voyage_voyage_number_fk">
+            <End Role="voyage" EntitySet="voyages" />
+            <End Role="voyage_arrival_time_change" EntitySet="voyage_arrival_time_change" />
+          </AssociationSet>
+          <AssociationSet Name="voyage_voyage_status_id_fk" Association="Self.voyage_voyage_status_id_fk">
+            <End Role="voyage_status" EntitySet="voyage_status" />
+            <End Role="voyage" EntitySet="voyages" />
+          </AssociationSet>
+          <AssociationSet Name="container_cargo_owner_id_fk" Association="S2DBModel.container_cargo_owner_id_fk">
+            <End Role="cargo_owner" EntitySet="cargo_owner" />
+            <End Role="container" EntitySet="containers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="container_cargo_owner_id_fk">
+          <End Type="S2DBModel.cargo_owner" Role="cargo_owner" Multiplicity="1" />
+          <End Type="S2DBModel.container" Role="container" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargo_owner">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="container">
+              <PropertyRef Name="cargo_owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="S2DBModelStoreContainer" CdmEntityContainer="S2DBEntities">
+          <EntitySetMapping Name="cargo_owner">
+            <EntityTypeMapping TypeName="S2DBModel.cargo_owner">
+              <MappingFragment StoreEntitySet="cargo_owner">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="rating_id" ColumnName="rating_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cargo_owner_rating">
+            <EntityTypeMapping TypeName="S2DBModel.cargo_owner_rating">
+              <MappingFragment StoreEntitySet="cargo_owner_rating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="containers">
+            <EntityTypeMapping TypeName="S2DBModel.container">
+              <MappingFragment StoreEntitySet="container">
+                <ScalarProperty Name="container_number" ColumnName="container_number" />
+                <ScalarProperty Name="voyage_number" ColumnName="voyage_number" />
+                <ScalarProperty Name="container_type_id" ColumnName="container_type_id" />
+                <ScalarProperty Name="cargo_owner_id" ColumnName="cargo_owner_id" />
+                <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="container_type">
+            <EntityTypeMapping TypeName="S2DBModel.container_type">
+              <MappingFragment StoreEntitySet="container_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="S2DBModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="country_code" ColumnName="country_code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="duty_rate" ColumnName="duty_rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customs_officer">
+            <EntityTypeMapping TypeName="S2DBModel.customs_officer">
+              <MappingFragment StoreEntitySet="customs_officer">
+                <ScalarProperty Name="job_number" ColumnName="job_number" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="declarations">
+            <EntityTypeMapping TypeName="S2DBModel.declaration">
+              <MappingFragment StoreEntitySet="declaration">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="declaration_status_id" ColumnName="declaration_status_id" />
+                <ScalarProperty Name="container_number" ColumnName="container_number" />
+                <ScalarProperty Name="hs_code" ColumnName="hs_code" />
+                <ScalarProperty Name="country_of_origin" ColumnName="country_of_origin" />
+                <ScalarProperty Name="trade_mode" ColumnName="trade_mode" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="cargo_amount" ColumnName="cargo_amount" />
+                <ScalarProperty Name="duty_payable" ColumnName="duty_payable" />
+                <ScalarProperty Name="declaration_time" ColumnName="declaration_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="declaration_status">
+            <EntityTypeMapping TypeName="S2DBModel.declaration_status">
+              <MappingFragment StoreEntitySet="declaration_status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="declaration_status_change">
+            <EntityTypeMapping TypeName="S2DBModel.declaration_status_change">
+              <MappingFragment StoreEntitySet="declaration_status_change">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="declaration_id" ColumnName="declaration_id" />
+                <ScalarProperty Name="declaration_status_id" ColumnName="declaration_status_id" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="exception_type">
+            <EntityTypeMapping TypeName="S2DBModel.exception_type">
+              <MappingFragment StoreEntitySet="exception_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="harmonized_system">
+            <EntityTypeMapping TypeName="S2DBModel.harmonized_system">
+              <MappingFragment StoreEntitySet="harmonized_system">
+                <ScalarProperty Name="hs_code" ColumnName="hs_code" />
+                <ScalarProperty Name="hs_description" ColumnName="hs_description" />
+                <ScalarProperty Name="is_duty_free" ColumnName="is_duty_free" />
+                <ScalarProperty Name="duty_rate" ColumnName="duty_rate" />
+                <ScalarProperty Name="risk_grade" ColumnName="risk_grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ports">
+            <EntityTypeMapping TypeName="S2DBModel.port">
+              <MappingFragment StoreEntitySet="port">
+                <ScalarProperty Name="port_code" ColumnName="port_code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="country_code" ColumnName="country_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="S2DBModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_status_change">
+            <EntityTypeMapping TypeName="S2DBModel.sc_status_change">
+              <MappingFragment StoreEntitySet="sc_status_change">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="security_check_id" ColumnName="security_check_id" />
+                <ScalarProperty Name="sc_status_id" ColumnName="sc_status_id" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="security_check">
+            <EntityTypeMapping TypeName="S2DBModel.security_check">
+              <MappingFragment StoreEntitySet="security_check">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="container_number" ColumnName="container_number" />
+                <ScalarProperty Name="check_time" ColumnName="check_time" />
+                <ScalarProperty Name="inspector" ColumnName="inspector" />
+                <ScalarProperty Name="current_status" ColumnName="current_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="security_check_exception">
+            <EntityTypeMapping TypeName="S2DBModel.security_check_exception">
+              <MappingFragment StoreEntitySet="security_check_exception">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="security_check_id" ColumnName="security_check_id" />
+                <ScalarProperty Name="exception_type_id" ColumnName="exception_type_id" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="inspector" ColumnName="inspector" />
+                <ScalarProperty Name="submit_time" ColumnName="submit_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="security_check_status">
+            <EntityTypeMapping TypeName="S2DBModel.security_check_status">
+              <MappingFragment StoreEntitySet="security_check_status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trade_mode">
+            <EntityTypeMapping TypeName="S2DBModel.trade_mode">
+              <MappingFragment StoreEntitySet="trade_mode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="duty_rate" ColumnName="duty_rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="units">
+            <EntityTypeMapping TypeName="S2DBModel.unit">
+              <MappingFragment StoreEntitySet="unit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="voyages">
+            <EntityTypeMapping TypeName="S2DBModel.voyage">
+              <MappingFragment StoreEntitySet="voyage">
+                <ScalarProperty Name="voyage_number" ColumnName="voyage_number" />
+                <ScalarProperty Name="departure_port" ColumnName="departure_port" />
+                <ScalarProperty Name="destination_port" ColumnName="destination_port" />
+                <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+                <ScalarProperty Name="estimated_arrival_time" ColumnName="estimated_arrival_time" />
+                <ScalarProperty Name="actual_arrival_time" ColumnName="actual_arrival_time" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="voyage_arrival_time_change">
+            <EntityTypeMapping TypeName="S2DBModel.voyage_arrival_time_change">
+              <MappingFragment StoreEntitySet="voyage_arrival_time_change">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="voyage_number" ColumnName="voyage_number" />
+                <ScalarProperty Name="estimated_arrival_time" ColumnName="estimated_arrival_time" />
+                <ScalarProperty Name="change_time" ColumnName="change_time" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="voyage_status">
+            <EntityTypeMapping TypeName="S2DBModel.voyage_status">
+              <MappingFragment StoreEntitySet="voyage_status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

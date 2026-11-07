@@ -52,3 +52,12 @@ local.properties
 .idea/
 local.properties
 *.iml
+
+# Local data and machine-specific files
+**/vehicle_photos/
+**/App_Data/
+**/.diagram-preview/
+**/TestResults/
+**/S1_DB.sql
+**/PublishProfiles/
+*.pubxml

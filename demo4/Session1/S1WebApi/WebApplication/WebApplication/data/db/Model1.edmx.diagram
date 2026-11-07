@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="82a3d08f65274fe197d922b19189d1f2" Name="Diagram1">
+        <EntityTypeShape EntityType="S1DBModel.authorized_vehicle" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.cargo_owner" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.container" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.container_type" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.country" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.declaration" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.declaration_status" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.declaration_status_change" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.harmonized_system" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.port" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.trade_mode" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.unit" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.voyage" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.voyage_arrival_time_change" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="S1DBModel.voyage_status" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="S1DBModel.authorized_vehicle_cargo_owner_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.container_cargo_owner_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.container_container_type_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.container_voyage_voyage_number_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.declaration_container_container_no_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.FK_declaration_country" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.FK_port_country" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.declaration_declaration_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.declaration_status_change_declaration_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.declaration_trade_mode_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.declaration_unit_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.FK_declaration_harmonized_system" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.declaration_status_change_declaration_status_id_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.FK_voyage_departure_port" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.FK_voyage_destination_port" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.voyage_arrival_time_change_voyage_voyage_number_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="S1DBModel.voyage_voyage_status_id_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

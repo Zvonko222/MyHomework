@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Main"
+        android:id="@+id/nav_main_menu"
+        android:icon="@drawable/ic_main"/>
+    <item
+        android:title="Declaration"
+        android:id="@+id/nav_declaration_menu"
+        android:icon="@drawable/ic_declaration"/>
+    <item
+        android:title="Cargo"
+        android:id="@+id/nav_cargo_menu"
+        android:icon="@drawable/ic_cargo"/>
+    <item
+        android:title="Vehicle"
+        android:id="@+id/nav_vehicle"
+        android:icon="@drawable/ic_vehicle"/>
+
+</menu>

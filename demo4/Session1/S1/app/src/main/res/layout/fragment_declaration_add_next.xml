@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.home.declaration.DeclarationAddNextFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/bold_title_button_font"
+            android:text="Add Declaration"
+            android:textColor="#D204346A"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contract And Duty"
+            android:fontFamily="@font/bold_title_button_font"
+            android:textSize="20dp"/>
+        <View
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:fontFamily="@font/regular_font"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/et_declaration_add_next_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text_white"
+            android:inputType="number"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unit"
+            android:fontFamily="@font/regular_font"
+            android:padding="5dp"/>
+        <Spinner
+            android:id="@+id/sp_declaration_add_next_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text_white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargo Total Amount"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/tv_declaration_add_next_cargo_total"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:inputType="number"
+            android:background="@drawable/bg_edit_text_white"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_declaration_add_next_duty"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold_title_button_font"
+                android:text="Duty: 0.00 CNY"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_declaration_add_next_previous_page"
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="123dp"
+                android:layout_height="35dp"
+                android:text="Previous Page"
+                android:textAllCaps="false"
+                android:fontFamily="@font/bold_title_button_font"
+                android:background="@drawable/bg_button_blue"
+                android:textColor="@color/white"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_declaration_add_next_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:fontFamily="@font/bold_title_button_font"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_button_blue"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

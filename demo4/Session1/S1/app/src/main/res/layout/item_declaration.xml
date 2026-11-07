@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/bg_linearlayout"
+    android:elevation="10dp"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_item_declaration_id"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="CDA202512191111111"
+            android:fontFamily="@font/bold_title_button_font"/>
+        <TextView
+            android:id="@+id/tv_item_declaration_status"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Rejected"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_item_declaration_voyage_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voyage Number: 22E"
+        android:fontFamily="@font/light_main_text_font"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/tv_item_declaration_container_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Container Number:MSCU1234567"
+        android:fontFamily="@font/light_main_text_font"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/tv_item_declaration_cargo_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/light_main_text_font"
+        android:layout_margin="5dp"
+        android:text="Cargo Amount:240000 "/>
+    <TextView
+        android:id="@+id/tv_item_declaration_duty_payable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:fontFamily="@font/light_main_text_font"
+        android:text="Duty Payable:1827.55" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_item_declaration_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_button_blue"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            android:text="Modify"
+            android:layout_marginHorizontal="10dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_item_declaration_reason"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_button_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAllCaps="false"
+            android:visibility="invisible"
+            android:text="View Reason"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_linearlayout"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_item_cargo_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold_title_button_font"
+        android:text="MSCU1234567"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tv_item_cargo_voyage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/light_main_text_font"
+        android:text="Voyage Number: 22E" />
+
+    <TextView
+        android:id="@+id/tv_item_cargo_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/light_main_text_font"
+        android:text="Type: 20GP" />
+
+    <TextView
+        android:id="@+id/tv_item_cargo_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/light_main_text_font"
+        android:text="Purchase Price: 12000.00" />
+
+</LinearLayout>
